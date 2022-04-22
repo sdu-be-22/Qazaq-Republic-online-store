@@ -1,6 +1,7 @@
 {% load static %}
+{% load i18n %}
 <style>
-    .hello_msg {
+   .hello_msg {
         font-size: 18px;
         color: #fcfaf8;
         margin: 25px 20px;
@@ -20,11 +21,13 @@
         </div>
     </div>
     <div class="header_right">
+
         {% if request.user.is_authenticated %}
-        <span class="hello_msg">Welcome, {{request.user}}</span>
-        <span class="hello_msg"><a class="hello-log" href="{% url 'accounts:logout' %}">Logout</a></span>
+            <span class="hello_msg">Welcome, {{request.user}}</span>
+            <span class="hello_msg"><a class="hello-log" href="{% url 'account_logout' %}">Logout</a></span>
         {% else %}
-        <span class="hello_msg"><a class="hello-log" href="{% url 'accounts:login' %}">Login</a></span>
+            <span class="hello_msg"><a class="hello-log" href="{% url 'account_login' %}">Login</a></span>
+            <span class="hello_msg"><a class="hello-log" href="{% url 'account_signup' %}">Sign up</a></span>
         {% endif %}
 
         <button class="basketbut">
@@ -49,4 +52,6 @@
         </button>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </header>
