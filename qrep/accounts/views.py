@@ -7,42 +7,50 @@ from django.contrib import messages
 from .forms import CreateUserForm
 from .models import *
 
-
-def registerPage(request):
-    if request.user.is_authenticated:
-        return redirect('bastama:home')
-    else:
-        form = CreateUserForm()
-        if request.method == 'POST':
-            form = CreateUserForm(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, 'Accounts was created for ' + user)
-                return redirect('/accounts/login')
-        # context = {'form':form}
-        return render(request, 'accounts/register.html', {'form': form})
+def index(request):
+    #category = Category.objects.all()
+    current_user = request.user  # Access User Session information
+    profile = UserProfile.objects.get(user_id=current_user.id)
+    context = {#'category': category,
+               'profile':profile}
+    return render(request,'user_profile.html',context)
 
 
-def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('bastama:home')
-    else:
-        if request.method == 'POST':
-            username = request.POST.get('username').strip()
-            password = request.POST.get('password').strip()
-
-            user = authenticate(request, username=username, password=password)
-            print(user)
-            if user is not None:
-                login(request, user)
-                return redirect('bastama:home')
-            else:
-                messages.info(request, 'Username OR password is incorrect')
-        context = {}
-        return render(request, 'accounts/login.html', context)
-
-
-def logoutUser(request):
-    logout(request)
-    return redirect('bastama:home')
+# def registerPage(request):
+#     if request.user.is_authenticated:
+#         return redirect('bastama:home')
+#     else:
+#         form = CreateUserForm()
+#         if request.method == 'POST':
+#             form = CreateUserForm(request.POST)
+#             if form.is_valid():
+#                 form.save()
+#                 user = form.cleaned_data.get('username')
+#                 messages.success(request, 'Accounts was created for ' + user)
+#                 return redirect('/accounts/login')
+#         # context = {'form':form}
+#         return render(request, 'accounts/register.html', {'form': form})
+#
+#
+# def loginPage(request):
+#     if request.user.is_authenticated:
+#         return redirect('bastama:home')
+#     else:
+#         if request.method == 'POST':
+#             username = request.POST.get('username').strip()
+#             password = request.POST.get('password').strip()
+#
+#             user = authenticate(request, username=username, password=password)
+#             print(user)
+#             if user is not None:
+#                 login(request, user)
+#                 return redirect('bastama:home')
+#             else:
+#                 messages.info(request, 'Username OR password is incorrect')
+#         context = {}
+#         return render(request, 'accounts/login.html', context)
+#
+#
+# def logoutUser(request):
+#     logout(request)
+#     return redirect('bastama:home')

@@ -16,37 +16,12 @@
     <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
     <script src="https://unpkg.com/vue-material@beta"></script>
-
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
     <link rel="stylesheet" href="{% static 'bastama/css/style.css' %}">
+{#    <link rel="stylesheet" href="{% static 'bastama/css/bootstrap.min.css' %}">#}
     {% block style %}
     {% endblock  %}
     <title>{{ title }}</title>
-    <script type="text/javascript">
-        let user = '{{ request.user }}'
-
-        function get_cookie(name) {
-            const cookieArr = document.cookie.split(';')
-
-            for (let i = 0; i < cookieArr.length; i++) {
-                const cookiePair = cookieArr[i].split('=')
-
-                if (cookiePair[0] === name) {
-                    return decodeURIComponent(cookiePair[1])
-                }
-            }
-            return null
-        }
-
-        let cart = JSON.parse(get_cookie('cart'))
-
-        if (cart == undefined) {
-            cart = {}
-            console.log('cart was added')
-            document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
-        }
-        console.log('cart', cart)
-
-    </script>
 </head>
 <body>
 
