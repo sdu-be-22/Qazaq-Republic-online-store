@@ -237,19 +237,19 @@
         </div>
         <div id="app">
             <button type="submit" style="border: 0.5px solid black; width: 60px;">Send</button>
-
         </div>
     </form>
     <img src="{% static 'bastama/images/home/25.png' %}" alt="" style="width: 40%;">
 </div>
 
 <div class="subscribe" style="position: relative;height: 280px;">
-    <form method="get">
-    <h1 style="padding-top: 10px;">Join to the movement</h1>
-    <p>Sign up to the newsletter and be the first one to know <br>about new arrivals and special offers</p>
-    <input type="email" name="message-ems" placeholder=" Enter your e-mail " style="border: 0.2px solid black; height: 35px; width: 350px;">
-    <button type="submit" style="border: 0.5px solid black; background-color:black; color:white; height: 35px; width: 100px;"> Subscribe </button>
-</form>
+    <form method="post">
+        {% csrf_token %}
+        <h1 style="padding-top: 10px;">Join to the movement</h1>
+        <p>Sign up to the newsletter and be the first one to know <br>about new arrivals and special offers</p>
+        <input type="email" name="message-ems" placeholder=" Enter your e-mail " style="border: 0.2px solid black; height: 35px; width: 350px;">
+        <button type="submit" style="border: 0.5px solid black; background-color:black; color:white; height: 35px; width: 100px;"> Subscribe </button>
+    </form>
 <div class="iconss" style="margin-top:20px; margin-bottom: 20px;">
 <a href="https://www.facebook.com/qazaq.republic.brand" class="fa fa-facebook"></a>
 <a href="https://www.instagram.com/qazaq.republic/" class="fa fa-instagram"></a>
