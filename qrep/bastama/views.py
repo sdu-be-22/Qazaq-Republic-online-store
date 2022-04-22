@@ -11,33 +11,34 @@ app_name = 'bastama'
 
 
 def index(request):
-
     if request.method == "POST":
-        message_email = request.POST['message-email']
-        message_name = request.POST['message-name']
-        message = request.POST['message']
+        if 'message-ems' in request.POST:
+            message_email = request.POST['message-ems']
+            send_mail(
+                'Direct',
+                'subscription from ' + message_email,
+                message_email,
+                ['200103223@stu.sdu.edu.kz'],
+            )
+            return redirect("bastama:home")
 
-        send_mail(
-            'message from ' + message_name + ',' + message_email,
-            message,
-            message_email,
-            ['200103223@stu.sdu.edu.kz'],
-        )
-        return redirect("bastama:home")
+        else:
+            message_email = request.POST['message-email']
+            message_name = request.POST['message-name']
+            message = request.POST['message']
+
+            send_mail(
+                'message from ' + message_name + ',' + message_email,
+                message,
+                message_email,
+                ['200103223@stu.sdu.edu.kz'],
+            )
+            return redirect("bastama:home")
+
     else:
         return render(request, 'bastama/index.html', {'title': 'Qazaq Republic'})
 
-    if request.method == "GET":
-        message_email = request.GET['message-ems']
 
-        send_mail(
-            'subscription from ' + message_ems,
-            ['200103223@stu.sdu.edu.kz'],
-        )
-        return redirect("bastama:home")
-
-    else:
-        return render(request, 'bastama/index.html', {'title': 'Qazaq Republic'})
 
 
 def category_products(request, cat_name):
