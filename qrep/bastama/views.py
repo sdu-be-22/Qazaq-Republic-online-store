@@ -52,14 +52,21 @@ def category_products(request, cat_name):
         value_to_filter = product_tuple[1]
         context[context_key] = Product.objects.filter(category__name=value_to_filter)
 
+
     return render(request, template_url, context)
 
 
 def product_detail(request, slug):
     context = dict()
     context['data'] = Product.objects.get(slug=slug)
-    context['sizes'] = Size.objects.all()
-    context['title'] = context['data'].name
+    context['title'] = context.get('data').name
+
+    if context.get('data').productattribute_set.all():
+        if context.get('data').productattribute_set.all()[0].size:
+            context['sizes'] = Size.objects.all()
+
+    customer, _ = Customer.objects.get_or_create(user=request.user)
+    favorite, is_fav = is_favorite_of_customer(customer, context['data'])
 
     return render(request, 'bastama/views/product.html', context)
 
@@ -107,7 +114,7 @@ def click_like(request, slug):
     else:
         Favors.objects.create(customer=customer, product=favorite_product)
 
-    return redirect('bastama:product_detail', slug=slug)
+    return JsonResponse()
 
 
 def test(request):

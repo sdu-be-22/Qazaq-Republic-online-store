@@ -1,46 +1,3 @@
-/* Sidebar styles */
-
-.sidebar {
-    position: fixed;
-    top: 100px;
-    right: 0;
-    z-index: 3;
-    padding-top: 50px;
-
-    height: calc(100vh - 100px);
-    width: 250px;
-    background-color: #0045c0;
-
-    transform: translateX(100vw);
-    transition: all .5s cubic-bezier(1, 0, 0, 1);
-}
-.sidebar a{
-    text-decoration: none;
-}
-.sidebar a:hover{
-    color: yellow;
-}
-
-.sidebar__menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
-    height: 50%;
-}
-
-.menu__link {
-    font-size: 35px;
-    font-family: 'Podkova',serif;
-    color: #fff;
-}
-
-.sidebar.active {
-    transform: translateX(0);
-}
-
-
 /*--------------------------content------------------------------*/
 
 .content{
@@ -80,80 +37,18 @@
     padding-bottom: 10px;
 }
 
-.imageblock1{
-    width: 300px;
-    height: 300px;
-    background: url("./123/gift/gift1.jpeg");
-    background-size: 100%;
-}
 
-
-.imageblock2{
-    width: 300px;
-    height: 300px;
-    background: url("./123/gift/gift2.jpeg");
-    background-size: 300px;
-}
-
-
-.imageblock3{
-    width: 300px;
-        height: 300px;
-        background: url("./123/gift/gift3.jpeg");
-        background-size: 300px;
-}
-
-
-
-.imageblock4{
-    width: 300px;
-        height: 300px;
-        background: url("./123/gift/gift4.jpeg");
-        background-size: 300px;
-}
-
-
-.imageblock5{
-    width: 300px;
-        height: 300px;
-        background: url("./123/gift/gift5.jpeg");
-        background-size: 300px;
-}
-
-
-.imageblock6{
-    width: 300px;
-        height: 300px;
-        background: url("./123/gift/gift6.jpeg");
-        background-size: 300px;
-}
-
-
-.imageblock7{
-    width: 300px;
-        height: 300px;
-        background: url("./123/gift/gift7.jpeg");
-        background-size: 300px;
-}
-
-.imageblock8{
-    width: 300px;
-        height: 300px;
-        background: url("./123/gift/gift8.jpeg");
-        background-size: 300px;
-}
-
-.button {
-    text-decoration: none;
-    color: #0046c0;
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: transparent;
-    border-radius: 13px;
-    border: 3px solid #0046c0;
-    padding: 6px 20px;
-  }
+/*.button {*/
+/*    text-decoration: none;*/
+/*    color: #0046c0;*/
+/*    font-size: 20px;*/
+/*    font-weight: bold;*/
+/*    text-transform: uppercase;*/
+/*    background-color: transparent;*/
+/*    border-radius: 13px;*/
+/*    border: 3px solid #0046c0;*/
+/*    padding: 6px 20px;*/
+/*  }*/
 
 .coastel{
 	font-size: 15px;
