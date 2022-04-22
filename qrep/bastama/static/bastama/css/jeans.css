@@ -1,45 +1,3 @@
-/* Sidebar styles */
-
-.sidebar {
-    position: fixed;
-    top: 100px;
-    right: 0;
-    z-index: 3;
-    padding-top: 50px;
-
-    height: calc(100vh - 100px);
-    width: 250px;
-    background-color: #0045c0;
-
-    transform: translateX(100vw);
-    transition: all .5s cubic-bezier(1, 0, 0, 1);
-}
-.sidebar a{
-    text-decoration: none;
-}
-.sidebar a:hover{
-    color: yellow;
-}
-
-.sidebar__menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
-    height: 50%;
-}
-
-.menu__link {
-    font-size: 35px;
-    font-family: 'Podkova',serif;
-    color: #fff;
-}
-
-.sidebar.active {
-    transform: translateX(0);
-}
-
 /*--------------------------content------------------------------*/
 
 .content{
@@ -64,46 +22,30 @@
 
 }
 
-
-.imageblock15{
-    width: 300px;
-    height: 300px;
-    background-size: 300px!important;
-    background-repeat: no-repeat!important;
-    background-attachment: fixed;
-    background-position: center!important;
-}
-
-.imageblock15:hover{
-    /*background: url("./123/jeideler/burjeide/b1.jpg") no-repeat ;*/
-    background-size: 300px;
-}
-
 .coastel{
 	font-size: 15px;
     padding-bottom: 10px;
 }
-.button {
-    text-decoration: none;
-    color: #0046c0;
-    font-family: BebasNeue;
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: transparent;
-    border-radius: 13px;
-    border: 3px solid #0046c0;
-    padding: 6px 20px;
-  }
-  @media (max-width:1200px) {
-    .rowblock{
-    display: grid;
-}
-.nameblock{
-    font-size: 30px;
-    padding-left: 30px;
-}
-}
+/*.button {*/
+/*    text-decoration: none;*/
+/*    color: #0046c0;*/
+/*    font-size: 20px;*/
+/*    font-weight: bold;*/
+/*    text-transform: uppercase;*/
+/*    background-color: transparent;*/
+/*    border-radius: 13px;*/
+/*    border: 3px solid #0046c0;*/
+/*    padding: 6px 20px;*/
+/*  }*/
+/*  @media (max-width:1200px) {*/
+/*    .rowblock{*/
+/*    display: grid;*/
+/*}*/
+/*.nameblock{*/
+/*    font-size: 30px;*/
+/*    padding-left: 30px;*/
+/*}*/
+/*}*/
 @media (max-width:740px) {
     .qazrep{
         font-size:28px;

@@ -1,28 +1,30 @@
-{% extends '../components/base.html' %}
+{% extends 'bastama/components/base.html' %}
 {% load static %}
 
 {% block style %}
 {% endblock %}
 
 {% block content %}
-<main>
-    <div class="content">
-        {% if favorites %}
-            {% for fav in favorites %}
-            <div class="cardblock">
-                {% if fav.product.first_photo.url %}
-                    <div class="imageblock15" style="background: url({{ fav.product.first_photo.url }})"></div>
-                {% else %}
-                    <div class="imageblock15" style="background: url({% static 'bastama/images/default/download.jpeg' %})"></div>
-                {% endif %}
-                <div class="nameelement">{{ fav.product.name }}</div>
-                <div class="coastel">{{ fav.product.price | floatformat }} KZT</div>
-                <a class="button" href="{% url 'bastama:product_detail' fav.product.slug %}">Shop Now</a>
-            </div>
-            {% endfor %}
-        {% else %}
-            <h1>You don't have favorites</h1>
-        {% endif %}
-    </div>
-</main>
+   {% include 'bastama/components/default_sidebar.html' %}
+
+    <main>
+        <div class="content">
+            {% if favorites %}
+                {% for fav in favorites %}
+                <div class="cardblock">
+                    {% if fav.product.first_photo.url %}
+                        <div class="imageblock15" style="background: url({{ fav.product.first_photo.url }})"></div>
+                    {% else %}
+                        <div class="imageblock15" style="background: url({% static 'bastama/images/default/download.jpeg' %})"></div>
+                    {% endif %}
+                    <div class="nameelement">{{ fav.product.name }}</div>
+                    <div class="coastel">{{ fav.product.price | floatformat }} KZT</div>
+                    <a class="button" href="{% url 'bastama:product_detail' fav.product.slug %}">Shop Now</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <h1>You don't have favorites</h1>
+            {% endif %}
+        </div>
+    </main>
 {% endblock content %}
