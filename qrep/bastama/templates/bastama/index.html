@@ -1,0 +1,267 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/home.css' %}">
+{% endblock style %}
+
+{# Block of Content starting right here #}
+{% block content %}
+    <!-- Sidebar -->
+
+    <div class="sidebar" id="sidebar">
+        <ul class="sidebar__menu">
+            <li class="menu__item">
+                <a href="#aboutus" class="menu__link">About us</a>
+            </li>
+
+            <li class="menu__item">
+                <a href="#catalog" class="menu__link">Catalog</a>
+            </li>
+
+            <li class="menu__item">
+                <a href="#lookbook" class="menu__link">LookBook</a>
+            </li>
+
+            <li class="menu__item">
+                <a href="#contacts" class="menu__link">Contacts</a>
+            </li>
+        </ul>
+    </div>
+
+<!-- Content -->
+
+
+    <div class="content">
+
+    <video class="video" width=100% controls >
+        <source src="https://drive.google.com/uc?export=preview&id=1qu1vZ01pUHCqvG98SWdBrZMuzj-po-i0" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+
+
+<!-- About us -->
+<div id="aboutus">
+    <div class="parallax au">
+        <div class="mask"></div>
+     </div>
+    <div class="waq">
+        <div class="text">
+        <h1>We are <br>Qazaq Republic</h1>
+        <p>The word Qazaq means “free” from <br>ancient Türkic, therefore our prints have <br>a double meaning. It’s a play on words:</p>
+        <pre>Born to be Qazaq</pre>
+        <pre id="first">Born to be Free</pre>
+        </div>
+        <div class="sur">
+        <img class="imgg" width="40%" src="{% static 'bastama/images/home/qaz.jpg' %}" alt="">
+        </div>
+</div>
+</div>
+
+<div class="bastyq">
+    <div class="custom-shape-divider-top-1639846922">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+        </svg>
+    </div>
+    <h1>Saken Joldas</h1>
+    <div class="ske">
+        <div class="car">
+        <!-- Carousel -->
+            <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+    <!-- Indicators/dots -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    </div>
+
+    <!-- The slideshow/carousel -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'bastama/images/home/saken.jpg' %}" alt="saken" class="d-block" style="width:100%">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'bastama/images/home/qrs.jpeg' %}" alt="qrs" class="d-block" style="width:100%">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'bastama/images/home/foto.jpg' %}" alt="qrs" class="d-block" style="width:100%">
+      </div>
+    </div>
+
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+    </div>
+    </div>
+
+    <div class="tes">
+    <p><span>Saken Zholdas</span> is a well-known Kazakh director and founder of <br>our brand <span>Qazaq Republic</span>, which was launched in 2017. Now we <br>have more than 30 points of sale all over the country. In the <br>beginning we had no confidence in the quality of the products,<br>so for the first year we worked in a test mode. Now we are<br> working with top retailers of the country, such as Meloman, Duty <br>Free, Shymbulak, FashionPark, Gazpromneft. During this time,<br> the sales have grown almost 20 times.In the future we plan to<br> introduce more assortment.</p>
+        <p class="it"><span>The idea</span> of our brand is to convey a piece of culture,<br> national identity. <span>The uniqueness</span> of our brand is in high-quality <br>presentation and modern style, which is not a shame to wear.</p>
+    </div>
+</div>
+</div>
+
+<!-- Catalog -->
+    <div id="catalog">
+        <!-- <img id="cat" src="cat.png" alt=""> -->
+        <div class="parallax ct">
+            <div class="mask"></div>
+         </div>
+        <div class="twos">
+
+        <div class="parent pone">
+            <div class="child bg-one">
+                <a class="grads" href="{% url 'bastama:category_products' 'jeans' %}">jeans</a>
+            </div>
+        </div>
+
+        <div class="parent ptwo">
+            <div class="child bg-two">
+                <a class="grads" href="{% url 'bastama:category_products' 'jeide' %}">jeide</a>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="twos">
+        <div class="parent ptwo">
+            <div class="child bg-three">
+                <a class="grads" href="{% url 'bastama:category_products' 'qosymsha' %}">qosymsha</a>
+            </div>
+        </div>
+
+        <div class="parent pone">
+            <div class="child bg-four">
+                <a class="grads" href="{% url 'bastama:category_products' 'gift' %}">gift</a>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+    <!-- LookBook -->
+    <div class="parallax lb">
+        <div class="mask"></div>
+     </div>
+     <div id="lookbook">
+        <section class="looks">
+            <div class="looks">
+                <div class="text_photo">
+                    <div class="text_photo_col">
+                        <a href="lookbook.html"><img src="{% static 'bastama/images/home/l1.jpg' %}" alt="" class="photo"></a>
+                        <div class="textt">
+                            <h4>Look 1</h4>
+                        </div>
+                    </div>
+                    <div class="text_photo_col">
+                        <a href="lookk.html"><img src="{% static 'bastama/images/home/l3.jpg' %}" alt="" class="photo"></a>
+                        <div class="text">
+                            <h4>Look 2</h4>
+                        </div>
+                    </div>
+                    <div class="text_photo_col">
+                        <a href="bookk.html"><img src="{% static 'bastama/images/home/l2.jpg' %}" alt="" class="photo"></a>
+                        <div class="text">
+                            <h4>Look 3</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+     </div>
+<!-- Contacts -->
+    <div class="parallax cn">
+        <div class="mask"></div>
+     </div>
+
+<div id="contacts">
+    <div class="cities">
+        <div id="logo" onclick="window.location.reload()"><img src="https://www.coloradoeagles.com/assets/img/Location-Icon-Circle-LtBlue-769be885ce.png" alt="" height=70px></div>
+        <div id="Almaty" onclick="change(this)" onmouseover="big(this)" onmouseout="small(this)">-Almaty-</div>
+        <div id="Nur-Sultan" onclick="change(this)" onmouseover="big(this)" onmouseout="small(this)">-Nur-Sultan-</div>
+        <div id="Shymkent" onclick="change(this)" onmouseover="big(this)" onmouseout="small(this)">-Shymkent-</div>
+        <div id="Aqtobe" onclick="change(this)" onmouseover="big(this)" onmouseout="small(this)">-Aqtobe-</div>
+        <div id="Aqtau" onclick="change(this)" onmouseover="big(this)" onmouseout="small(this)">-Aqtau-</div>
+    </div>
+          <pre>09:00-22:00 || ar kúnı</pre>
+    <div class="textcity">
+            <p id="h">Qosh keldınızder!</p>
+            <p id="t"> </p>
+        </div>
+        <div class="main">
+
+        <img id="map" src="{% static 'bastama/images/home/all.png' %}" alt="" usemap="#workmap" style="width: 60%; ">
+        <map name="workmap">
+            <area shape="circle" coords="320,280,80" alt="" href="https://go.2gis.com/bnmsog">
+            <area shape="circle" coords="90,420,120" alt="" href="https://go.2gis.com/dmvdrw">
+            <area shape="circle" coords="650,200,120" alt="" href="https://go.2gis.com/h63gkw">
+            <area shape="circle" coords="550,440,80" alt="" href="https://go.2gis.com/l6w31">
+            <area shape="circle" coords="800,420,120" alt="" href="https://2gis.kz/almaty/firm/70000001040035508?m=76.939%2C43.2671%2F16">
+          </map>
+
+    </div>
+
+
+</div>
+        <center>
+            <h2>Thanks{{ message_name }}!
+            </h2>
+            <br><br>
+        </center>
+<div class="wues">
+    <form method="post">
+        {% csrf_token %}
+        <div class="emailBox">
+          <label for="emailAddress">Eger suraqtarınız bolsa,astyğa jazyp ketınız</label><br>
+          <input id="emailAddress" type="email" name="message-email" size="44" maxLength="64" style="border: 0.2px solid black;height:30px" required
+                 placeholder="Your e-mail"><br><br>
+        </div>
+
+        <div class="messageBox">
+          <input id="messagee" type="text" name="message-name" size="54"  style="border: 0.2px solid black; height: 30px;" required
+                    placeholder="Aty-jon"></input><br>
+          <label for="message">Suraq</label><br>
+          <textarea id="message" name="message" cols="54" rows="8" style="border: 0.2px solid black;" required
+                    placeholder="Bari jaqsy bolady!"></textarea>
+        </div>
+        <div id="app">
+            <button type="submit" style="border: 0.5px solid black; width: 60px;">Send</button>
+
+        </div>
+    </form>
+    <img src="{% static 'bastama/images/home/25.png' %}" alt="" style="width: 40%;">
+</div>
+
+<div class="subscribe" style="position: relative;height: 280px;">
+    <form method="get">
+    <h1 style="padding-top: 10px;">Join to the movement</h1>
+    <p>Sign up to the newsletter and be the first one to know <br>about new arrivals and special offers</p>
+    <input type="email" name="message-ems" placeholder=" Enter your e-mail " style="border: 0.2px solid black; height: 35px; width: 350px;">
+    <button type="submit" style="border: 0.5px solid black; background-color:black; color:white; height: 35px; width: 100px;"> Subscribe </button>
+</form>
+<div class="iconss" style="margin-top:20px; margin-bottom: 20px;">
+<a href="https://www.facebook.com/qazaq.republic.brand" class="fa fa-facebook"></a>
+<a href="https://www.instagram.com/qazaq.republic/" class="fa fa-instagram"></a>
+<a id="qala" href="whatsapp://send?phone=77789489800&text=" class="fa fa-whatsapp"></a>
+<a href="https://t.me/WeAreQR" class="fa fa-telegram"></a>
+</div>
+<div class="custom-shape-divider-bottom-1639900400">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+    </svg>
+</div>
+</div>
+    </div>
+{% endblock content %}
+

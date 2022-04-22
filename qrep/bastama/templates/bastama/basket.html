@@ -1,0 +1,16 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/basket.css' %}">
+{% endblock style %}
+
+{# Block of Content starting right here #}
+{% block content %}
+    <div class="content">
+        <div class="con">
+            <h1 id="h1">Your basket is empty</h1>
+        </div>
+    </div>
+{% endblock content %}

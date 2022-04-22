@@ -1,0 +1,189 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/qosymsha.css' %}">
+{% endblock style %}
+
+{# Block Content starting here #}
+{% block content %}
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar__menu">
+        <li class="menu__item">
+            <a href="#jeide" class="menu__link">Sömke</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="#kepka" class="menu__link">Kepka</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="#panama" class="menu__link">Panama</a>
+        </li>
+
+         <li class="menu__item">
+            <a href="#qalpaq" class="menu__link">Qalpaq</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="#kese" class="menu__link">Kese</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="#botelke" class="menu__link">Bötelke</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="#betperde" class="menu__link">Betperde</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'jeans' %}" class="menu__link"><span style="color: yellow;">Jeans</span> </a>
+        </li>
+
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'jeide' %}" class="menu__link"><span style="color: yellow;">Jeide</span> </a>
+        </li>
+
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'gift' %}" class="menu__link"><span style="color: yellow;">Gift</span> </a>
+        </li>
+    </ul>
+</div>
+<!-- --------------------------------------------------------------------------------------- -->
+<main>
+    <div class="content">
+        {% if somkeler %}
+        <div class="nameblock1" id="jeide">gfvgrd</div>
+        <div class="nameblock" id="jeide">#Sömke</div>
+        <div class="content_blocks">
+            {% for prod in somkeler %}
+                <div class="cardblock">
+                    {% if prod.first_photo %}
+                        <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                    {% else %}
+                        <div class="imageblock15">No photo</div>
+                    {% endif %}
+                    <div class="nameelement">{{ prod.name }}</div>
+                    <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if kepkalar %}
+        <div class="nameblock" id="kepka">#Kepka</div>
+        <div class="content_blocks">
+            {% for prod in kepkalar %}
+                <div class="cardblock">
+                   {% if prod.first_photo %}
+                        <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                    {% else %}
+                        <div class="imageblock15">No photo</div>
+                    {% endif %}
+                    <div class="nameelement">{{ prod.name }}</div>
+                    <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if panamalar %}
+        <div class="nameblock" id="panama">#Panama</div>
+        <div class="content_blocks">
+            {% for prod in panamalar %}
+                <div class="cardblock">
+                    {% if prod.first_photo %}
+                        <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                    {% else %}
+                        <div class="imageblock15">No photo</div>
+                    {% endif %}
+                    <div class="nameelement">{{ prod.name }}</div>
+                    <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if qalpaktar %}
+        <div class="nameblock" id="qalpaq">#Qalpaq</div>
+        <div class="content_blocks">
+            {% for prod in qalpaktar %}
+                <div class="cardblock">
+                    {% if prod.first_photo %}
+                        <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                    {% else %}
+                        <div class="imageblock15">No photo</div>
+                    {% endif %}
+                    <div class="nameelement">{{ prod.name }}</div>
+                    <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if keseler %}
+        <div class="nameblock" id="kese" >#Kese</div>
+        <div class="content_blocks">
+            {% for prod in keseler %}
+                <div class="cardblock">
+                    {% if prod.first_photo %}
+                        <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                    {% else %}
+                        <div class="imageblock15">No photo</div>
+                    {% endif %}
+                    <div class="nameelement">{{ prod.name }}</div>
+                    <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if botelkeler %}
+        <div class="nameblock" id="botelke">#Bötelke</div>
+        <div class="content_blocks">
+            {% for prod in botelkeler %}
+                <div class="cardblock">
+                    {% if prod.first_photo %}
+                        <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                    {% else %}
+                        <div class="imageblock15">No photo</div>
+                    {% endif %}
+                    <div class="nameelement">{{ prod.name }}</div>
+                    <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                    <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if betperdeler %}
+        <div class="nameblock" id="betperde">#Betperde</div>
+        <div class="content_blocks">
+            {% for prod in betperdeler %}
+            <div class="cardblock">
+                {% if prod.first_photo %}
+                    <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                {% else %}
+                    <div class="imageblock15">No photo</div>
+                {% endif %}
+                <div class="nameelement">{{ prod.name }}</div>
+                <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+
+</main>
+
+<!-- ------------------------------------------------------------------------------------ -->
+{% endblock content %}

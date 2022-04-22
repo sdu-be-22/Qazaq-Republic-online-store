@@ -1,0 +1,44 @@
+{% extends '../components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/product.css' %}">
+{% endblock style %}
+
+{% block content %}
+<main>
+    <div class="mainken">
+        <div class="kenjeide">
+            <img id="prod" src="/media/{{ data.first_photo}}" alt="" width="300px" height="300px">
+            <div class="infoabout">
+            <div class="texth">
+                <h1>{{data.name}}</h1>
+            </div>
+            <div class="coast">{{ data.price|floatformat }} KZT</div>
+            <div class="colours">
+                <div class="textcolour">Colour select:</div>
+                <div class="buttoncolour">
+                    {% for color in data.productattribute_set.all %}
+                    <button id="first" onclick="changec(this)" class="butselectcolf" style="background-color:{{color.color.color_code}}"></button>
+                    {% endfor%}
+                </div>
+            </div>
+            <div class="aboutsize">
+                <div>SIZE:</div>
+                <div class="buttonsizes">
+                    {% for size in data.productattribute_set.all %}
+                    <button class="butselectss">{{size.size}}</button>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="aboutcomposition">
+                <div class="comp">COMPOSITION:</div>
+                <div>{{data.description}}</div>
+            </div>
+            <a class="button" href="basket.html">Add to bag</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

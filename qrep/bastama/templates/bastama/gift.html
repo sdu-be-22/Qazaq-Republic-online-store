@@ -1,0 +1,54 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/gift.css' %}">
+{% endblock style %}
+
+{# Block of Content starting right here #}
+{% block content %}
+
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar__menu">
+        <li class="menu__item">
+            <a href="#jeide" class="menu__link">GiftBox</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'jeans' %}" class="menu__link"><span style="color: yellow;">Jeans</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'qosymsha' %}" class="menu__link"><span style="color: yellow;">Qosymsha</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'jeide' %}" class="menu__link"><span style="color: yellow;">Jeide</span> </a>
+        </li>
+    </ul>
+</div>
+<!-- --------------------------------------------------------------------------------------- -->
+<main>
+    <div class="content">
+        <div class="nameblock1" id="jeide">gfvgrd</div>
+        <div class="nameblock" id="jeide">#GiftBox</div>
+        <div class="content_blocks">
+            {% for prod in gifts %}
+            <div class="cardblock">
+                {% if prod.first_photo %}
+                    <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                {% else %}
+                    <div class="imageblock15">No photo</div>
+                {% endif %}
+                <div class="nameelement">{{ prod.name }}</div>
+                <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</main>
+
+<!-- ------------------------------------------------------------------------------------ -->
+
+{% endblock content %}

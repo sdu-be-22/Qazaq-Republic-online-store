@@ -1,0 +1,21 @@
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/fix.css' %}">
+    <link rel="stylesheet" href="{% static 'bastama/css/style.css' %}">
+{% endblock style %}
+
+{% block content %}
+    <main>
+        <div class="content">
+            <h1>Order page</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="button">Save</button>
+            </form>
+        </div>
+    </main>
+    <script src="{% static 'bastama/js/basket.js' %}"></script>
+{% endblock content %}

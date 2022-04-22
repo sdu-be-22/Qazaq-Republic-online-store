@@ -1,0 +1,50 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/lookbook.css' %}">
+{% endblock style %}
+
+{# Block of Content starting right here #}
+{% block content %}
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar__menu">
+        <li class="menu__item">
+            <a href="lookbook.html" class="menu__link">Look 1</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="lookk.html" class="menu__link">Look 2</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="bookk.html" class="menu__link">Look 3</a>
+        </li>
+    </ul>
+</div>
+<!-- --------------------------------------------------------------------------------------- -->
+
+<div class="rowblock">
+    <div class="cardblock">
+        <div class="imageblock1" ></div>
+        <div class="nameelement">Look 1</div>
+        <div class="coastel"></div>
+        <a class="button" href="basket.html">Shop Now</a>
+    </div>
+    <div class="cardblock">
+        <div class="imageblock2"></div>
+        <div class="nameelement">BQ burjeide</div>
+        <div class="coastel">18000KZT</div>
+        <a class="button" href="basket.html">Shop Now</a>
+    </div>
+    <div class="cardblock">
+        <div class="imageblock3"></div>
+        <div class="nameelement">Jogger</div>
+        <div class="coastel">18000KZT</div>
+        <a class="button" href="basket.html">Shop Now</a>
+    </div>
+</div>
+
+    <!-- ------------------------------------------------------------------------------------ -->
+{% endblock content %}

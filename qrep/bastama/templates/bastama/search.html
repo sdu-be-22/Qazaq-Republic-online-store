@@ -1,0 +1,40 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/search.css' %}">
+{% endblock style %}
+
+{# Block of Content starting right here #}
+{% block content %}
+    <div class="content">
+        <form method="post">
+            {% csrf_token %}
+            <input id="search" type="search" name="search" placeholder="Search..." />
+            <label id="bt" type="submit">Go</label>
+        </form>
+
+        <div class="content_blocks" style="margin-top: 20px">
+        {% if products %}
+            {% for prod in products %}
+            <div class="cardblock">
+                {% if prod.first_photo.url %}
+                    <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                {% else %}
+                    <div class="imageblock15" style="background: url({% static 'bastama/images/default/download.jpeg' %})"></div>
+                {% endif %}
+                <div class="nameelement">{{ prod.name }}</div>
+                <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                <a class="button" href="basket.html">Shop Now</a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="cardblock">
+                <h3>Search something</h3>
+            </div>
+        {% endif %}
+        </div>
+        <h1 id="h1"></h1>
+    </div>
+{% endblock content %}

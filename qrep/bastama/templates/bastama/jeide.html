@@ -1,0 +1,86 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/jeide.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar__menu">
+        <li class="menu__item">
+            <a href="#jeide" class="menu__link">Jeideler</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="#burj" class="menu__link">Burjeideler</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="#kenj" class="menu__link">Kenjeideler</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'jeans' %}" class="menu__link"><span style="color: yellow;">Jeans</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'qosymsha' %}" class="menu__link"><span style="color: yellow;">Qosymsha</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'gift' %}" class="menu__link"><span style="color: yellow;">Gift</span> </a>
+        </li>
+    </ul>
+</div>
+<!-- --------------------------------------------------------------------------------------- -->
+<main>
+    <div class="content">
+
+        {% if jeideler %}
+        <div class="nameblock1" id="jeide">gfvgrd</div>
+        <div class="nameblock" id="jeide">#Jeideler</div>
+        <div class="content_blocks">
+            {% for jeide in jeideler %}
+            <div class="cardblock">
+                <div class="imageblock15" style="background: url({{ jeide.first_photo.url }})"></div>
+                <div class="nameelement">{{ jeide.name }}</div>
+                <div class="coastel">{{ jeide.price | floatformat }} KZT</div>
+                <a class="button" href="{% url 'bastama:product_detail' jeide.slug %}">Shop Now</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if birjeideler %}
+        <div class="nameblock" >#Burjeideler</div>
+        <div class="content_blocks">
+            {% for jeide in birjeideler %}
+            <div class="cardblock">
+                <div class="imageblock15" style="background: url({{ jeide.first_photo.url }})"></div>
+                <div class="nameelement">{{ jeide.name }}</div>
+                <div class="coastel">{{ jeide.price | floatformat }} KZT</div>
+                <a class="button" href="{% url 'bastama:product_detail' jeide.slug %}">Shop Now</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+        {% if kenjeideler %}
+        <div class="nameblock" >#Kenjeide</div>
+            <div class="content_blocks">
+                {% for jeide in kenjeideler %}
+                <div class="cardblock">
+                    <div class="imageblock15" style="background: url({{ jeide.first_photo.url }})"></div>
+                    <div class="nameelement">{{ jeide.name }}</div>
+                    <div class="coastel">{{ jeide.price | floatformat }} KZT</div>
+                    <a class="button" href="{% url 'bastama:product_detail' jeide.slug %}">Shop Now</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+</main>
+<!-- ------------------------------------------------------------------------------------ -->
+{% endblock content %}

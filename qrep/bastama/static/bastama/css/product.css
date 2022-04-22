@@ -1,0 +1,68 @@
+main{
+    margin: 0;
+    padding: 0;
+}
+.mainken{
+    padding-top: 75px;
+	display: flex;
+    flex-direction: row;
+}
+.kenjeide{
+	padding: 40px 0 0 30%;
+    display: flex;
+    flex-direction: row;
+}
+.infoabout{
+    padding-left: 40px;
+	display: flex;
+	flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+	color: #0045c0;
+}
+.texth{
+	font-size: 40px;
+}
+.coast{
+	font-size: 25px;
+	color: #003aa2;
+	margin: 5px 0;
+}
+.buttoncolour{
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
+	width: 100px;
+}
+.textcolour{
+	font-size: 20px;
+}
+.butselectcolf{
+ 	display: block;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 100%;
+    border: .1rem solid black;
+    background-size: cover;
+    background-position: 50%;
+    transform-origin: center;
+    z-index: 1;
+    color: #e7dac7;
+}
+
+.buttonsize {
+	font-size: 20px;
+}
+.button {
+    text-decoration: none;
+    color: #0046c0;
+    font-family: BebasNeue, serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: transparent;
+    border-radius: 13px;
+    border: 3px solid #0046c0;
+    padding: 6px 20px;
+    text-align: center;
+    max-width: 200px;
+  }

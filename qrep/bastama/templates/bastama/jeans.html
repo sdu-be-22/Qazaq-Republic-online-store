@@ -1,0 +1,67 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{# Configuring the style path #}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/jeans.css' %}">
+{% endblock style %}
+
+{# Block Content starting here #}
+{% block content %}
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar__menu">
+        <li class="menu__item">
+            <a href="#jeide" class="menu__link">Jeans</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="#burj" class="menu__link">Shalbar</a>
+        </li>
+
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'jeide' %}" class="menu__link"><span style="color: yellow;">Jeide</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'qosymsha' %}" class="menu__link"><span style="color: yellow;">Qosymsha</span> </a>
+        </li>
+        <li class="menu__item">
+            <a href="{% url 'bastama:category_products' 'gift' %}" class="menu__link"><span style="color: yellow;">Gift</span> </a>
+        </li>
+    </ul>
+</div>
+<!-- --------------------------------------------------------------------------------------- -->
+<main>
+    <div class="content">
+        {% if jeans %}
+        <div class="nameblock1" id="jeide">gfvgrd</div>
+        <div class="nameblock" id="jeide">#Jeans</div>
+        <div class="content_blocks">
+            {% for prod in jeans %}
+            <div class="cardblock">
+                <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                <div class="nameelement">{{ prod.name }}</div>
+                <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if shalbars %}
+        <div class="nameblock" id="burj">#Shalbar</div>
+         <div class="content_blocks">
+             {% for prod in shalbars %}
+            <div class="cardblock">
+                <div class="imageblock15" style="background: url({{ prod.first_photo.url }})"></div>
+                <div class="nameelement">{{ prod.name }}</div>
+                <div class="coastel">{{ prod.price | floatformat }} KZT</div>
+                <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
+            </div>
+             <p class="price">${{ product.price }}</p>
+            {% endfor %}
+         </div>
+        </div>
+        {% endif %}
+</main>
+
+{% endblock content %}

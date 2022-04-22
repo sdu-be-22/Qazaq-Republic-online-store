@@ -1,0 +1,70 @@
+/*------content------*/
+.content{
+	padding: 40px;
+    background-image:url("../images/home/bs.png");
+    background-size: 3%;
+    height: 780px;
+
+}
+.con{
+    margin: 60px 5%;
+    background-color: rgb(255, 255, 255);
+    height: 720px;
+}
+#h1{
+    color: #0046c0;
+    font-family: 'Podkova',serif;
+    font-size: 400%;
+    padding-top: 60px;
+    text-align: center;
+
+}
+@media (max-width:870px) {
+    #h1{
+        font-size: 300%;
+    }
+}
+@media (max-width:740px) {
+    .qazrep{
+        font-size:28px;
+    }
+    .qazrep p{
+        margin-top: 10px;
+    }
+    .logo{
+        height: 50px;
+    }
+    header{
+        height: 80px;
+    }
+}
+@media (max-width:650px) {
+    #h1{
+        font-size: 200%;
+    }
+    .logo{
+        height: 40px;
+    }
+    .qazrep p{
+        margin-top: 5px;
+    }
+    header{
+        height: 80px;
+    }
+}
+@media (max-width:605px) {
+    .qazrep{
+        display: none;
+    }
+    .logo{
+        height: 50px;
+    }
+    header{
+        height: 80px;
+
+}}
+@media (max-width:440px) {
+    #h1{
+        font-size: 100%;
+    }
+}
