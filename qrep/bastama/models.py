@@ -8,7 +8,7 @@ class Customer(models.Model):
     email = models.EmailField(max_length=200)
 
     def __str__(self):
-        return self.user if self.user else self.name
+        return str(self.user if self.user else self.name)
 
 
 class Category(models.Model):

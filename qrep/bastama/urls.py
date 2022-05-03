@@ -14,5 +14,6 @@ urlpatterns = [
     path('lookbook/', lookbook, name='lookbook'),
     path('test/', test, name='test'),
 
-    path('update_favs/<slug:slug>/', click_like, name='click_like'),
+    path('update_like/', clicked_favorite_button, name='click_like'),
+    # path('update_favs/<slug:slug>/', click_like, name='click_like'),
 ]

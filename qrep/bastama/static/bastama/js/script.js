@@ -65,7 +65,9 @@ function openSide () {
 
 $('.click').click(function() {
   if ($('span').hasClass("fa-star")) {
-      put_like_to_product('remove')
+    click_like_to_product('remove', this.dataset.product)
+
+    $('.click')
       $('.click').removeClass('active')
     setTimeout(function() {
       $('.click').removeClass('active-2')
@@ -76,7 +78,9 @@ $('.click').click(function() {
       $('.click span').addClass('fa-star-o')
     }, 15)
   } else {
-    put_like_to_product('add')
+    console.log(this.dataset.product)
+    click_like_to_product('add', this.dataset.product)
+
     $('.click').addClass('active')
     $('.click').addClass('active-2')
     setTimeout(function() {
@@ -93,11 +97,27 @@ $('.click').click(function() {
   }
 })
 
+function click_like_to_product(action, product_slug) {
+  console.log(action, 'from here')
+  const url = '/update_like/'
+  const csrf_token = get_cookie('csrftoken')
 
-function put_like_to_product(product_slug, ) {
-    console.log('clicked me', product_slug)
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrf_token,
+    },
+    body: JSON.stringify({'action': action, 'product_slug': product_slug})
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+    .catch(err => {
+      console.error(err)
+    })
 }
-
 
 Vue.use(VueMaterial.default)
 

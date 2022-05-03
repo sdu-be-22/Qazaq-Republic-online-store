@@ -320,13 +320,15 @@ header{
   font-family: 'Podkova',serif;
 }
 .fa {
+  position: relative;
+  top: -19px;
+  left: -19px;
   padding: 20px;
   font-size: 30px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   text-align: center;
-  padding: 10px;
 }
 
 
@@ -882,11 +884,13 @@ header{
 
 
 /* Favorite button styles */
+
 .click {
   font-size: 33px;
   color: rgba(0,0,0,.5);
   width: 38px;
   height: 38px;
+  margin: 10px;
   position: relative;
   cursor: pointer;
   transition: all .32s ease;

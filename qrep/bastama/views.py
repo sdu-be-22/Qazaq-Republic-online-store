@@ -1,3 +1,6 @@
+import json
+
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.core.mail import send_mail
 from django.shortcuts import render
@@ -53,7 +56,6 @@ def category_products(request, cat_name):
         value_to_filter = product_tuple[1]
         context[context_key] = Product.objects.filter(category__name=value_to_filter)
 
-
     return render(request, template_url, context)
 
 
@@ -67,7 +69,9 @@ def product_detail(request, slug):
             context['sizes'] = Size.objects.all()
 
     customer, _ = Customer.objects.get_or_create(user=request.user)
-    favorite, is_fav = is_favorite_of_customer(customer, context['data'])
+    _, is_fav = is_favorite_of_customer(customer, context['data'])
+    context['is_favorite_product'] = is_fav
+    print(context.get('is_favorite_product'), 'from product detail fav')
 
     return render(request, 'bastama/views/product.html', context)
 
@@ -104,18 +108,33 @@ def lookbook(request):
     return render(request, 'bastama/lookbook.html')
 
 
-def click_like(request, slug):
-    customer, _ = Customer.objects.get_or_create(user=request.user)
-    favorite_product = Product.objects.get(slug=slug)
+# def click_like(request, slug):
+#     customer, _ = Customer.objects.get_or_create(user=request.user)
+#     favorite_product = Product.objects.get(slug=slug)
+#
+#     favorite, is_fav = is_favorite_of_customer(customer, favorite_product)
+#
+#     if is_fav:
+#         favorite.delete()
+#     else:
+#         Favors.objects.create(customer=customer, product=favorite_product)
+#
+#     return JsonResponse({'til': 'i collapse'})
 
-    favorite, is_fav = is_favorite_of_customer(customer, favorite_product)
 
-    if is_fav:
-        favorite.delete()
-    else:
-        Favors.objects.create(customer=customer, product=favorite_product)
+def clicked_favorite_button(request):
+    data = json.loads(request.body)
+    customer = Customer.objects.get(user=request.user)
+    product = Product.objects.get(slug=data['product_slug'])
 
-    return JsonResponse()
+    if data['action'] == 'add':
+        Favors.objects.create(customer=customer, product=product)
+        return JsonResponse('Successfully added', safe=False)
+    elif data['action'] == 'remove':
+        Favors.objects.get(customer=customer, product=product).delete()
+        return JsonResponse('Successfully removed', safe=False)
+
+    return JsonResponse('Error occur', safe=False)
 
 
 def test(request):

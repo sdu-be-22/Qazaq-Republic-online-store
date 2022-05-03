@@ -9,6 +9,7 @@
 {% block content %}
     {% include 'bastama/components/default_sidebar.html' %}
 
+    {% csrf_token %}
     {#  Content  #}
     <main>
         <div class="mainken">
@@ -49,8 +50,8 @@
 
                     <div class="buttons" style="display: flex; align-items: center; justify-content: center;">
                         <a class="button" href="basket.html">Add to bag</a>
-                        <div class="click">
-                          <span class="fa fa-star-o"></span>
+                        <div class="click {% if is_favorite_product %}active active2 active3{% endif %}" onclick="" data-product="{{  data.slug }}">
+                          <span class="fa {% if is_favorite_product %}fa-star{% else %}fa-star-o{% endif %}"></span>
                           <div class="ring"></div>
                           <div class="ring2"></div>
                         </div>
