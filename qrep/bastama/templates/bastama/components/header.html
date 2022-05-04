@@ -32,29 +32,32 @@
                                 <div class="header-btns-icon">
                                     <img src="https://www.chogiwa.com/wp-content/uploads/2020/10/IMG_20201017_083133_814.jpg" style="height: 40px; border-radius: 50%; width: 40px">
                                 </div>
-                                <strong style="font-size: 18px " class="text-uppercase">{{ request.user }} <i class="fa fa-caret-down"></i></strong>
+{#                                <div class="text-uppercase">#}
+{#                                    <strong style="font-size: 18px ">{{ request.user }} <i class="fa fa-caret-down"></i></strong>#}
+{#                                </div>#}
+                                <div class="text-uppercase">
+                                    <span>
+                                        <strong>
+                                            {{ request.user }}
+                                        </strong>
+                                    </span>
+                                    <i class="fa fa-caret-down arrow-down"></i>
+                                </div>
                             </div>
                         {% else %}
                             <a href="{% url 'account_login' %}" class="text-uppercase">Login</a> / <a href="{% url 'account_signup' %}" class="text-uppercase">Sign Up</a>
                         {% endif %}
 
                         <ul class="custom-menu">
-                            <li><a href="/profile/"><i class="fa fa-user-o"></i> {% trans "My Account" %}</a></li>
-                            <li><a href="#"><i class="fa fa-heart-o"></i> {% trans "My Favorits" %}</a></li>
-                            <li><a href=""><i class="fa fa-exchange"></i> {% trans "My Orders " %}</a></li>
-                            <li><a href=""><i class="fa fa-check"></i> {% trans "My Comments" %}</a></li>
-                            <li><a href="{% url 'account_logout' %}"><i class="fa fa-unlock-alt"></i> {% trans "Logout" %}</a></li>
+                            <li><a href="/profile/" class="dropdown-links"><i class="fa fa-user-o"></i> {% trans "My Account" %}</a></li>
+                            <li><a href="#" class="dropdown-links"><i class="fa fa-heart-o"></i> {% trans "My Favorits" %}</a></li>
+                            <li><a href="" class="dropdown-links"><i class="fa fa-exchange"></i> {% trans "My Orders " %}</a></li>
+                            <li><a href="" class="dropdown-links"><i class="fa fa-check"></i> {% trans "My Comments" %}</a></li>
+                            <li><a href="{% url 'account_logout' %}" class="dropdown-links"><i class="fa fa-unlock-alt"></i> {% trans "Logout" %}</a></li>
 
                         </ul>
                     </li>
             </ul>
-                    <!-- /Account -->
-{#            <span class="hello_msg">Welcome, {{request.user}}</span>#}
-{#            <span class="hello_msg"><a class="hello-log" href="{% url 'account_logout' %}">Logout</a></span>#}
-{#        {% else %}#}
-{#            <span class="hello_msg"><a class="hello-log" href="{% url 'account_login' %}">Login</a></span>#}
-{#            <span class="hello_msg"><a class="hello-log" href="{% url 'account_signup' %}">Sign up</a></span>#}
-{#        {% endif %}#}
 
         <button class="basketbut">
             <a href="{% url 'bastama:basket' %}" title="basket" class="basketsvg">

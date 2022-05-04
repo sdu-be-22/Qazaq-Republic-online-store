@@ -78,7 +78,6 @@ $('.click').click(function() {
       $('.click span').addClass('fa-star-o')
     }, 15)
   } else {
-    console.log(this.dataset.product)
     click_like_to_product('add', this.dataset.product)
 
     $('.click').addClass('active')
@@ -98,7 +97,6 @@ $('.click').click(function() {
 })
 
 function click_like_to_product(action, product_slug) {
-  console.log(action, 'from here')
   const url = '/update_like/'
   const csrf_token = get_cookie('csrftoken')
 

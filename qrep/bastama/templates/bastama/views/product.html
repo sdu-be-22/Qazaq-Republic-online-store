@@ -32,7 +32,7 @@
                 {% endif %}
 
                 {% if sizes %}
-                <div class="aboutsize">
+                <div class="aboutsize" style="margin-bottom: 15px;">
                     <div>SIZE:</div>
                     <div class="buttonsizes">
                         {% for size in sizes %}
@@ -43,14 +43,15 @@
                 {% endif %}
 
                 {% if data.description %}
-                    <div class="aboutcomposition">
+                    <div class="aboutcomposition" style="margin-bottom: 15px">
                         <div class="comp">COMPOSITION:</div>
                         <div>{{ data.description }}</div>
                     </div>
 
-                    <div class="buttons" style="display: flex; align-items: center; justify-content: center;">
-                        <a class="button" href="basket.html">Add to bag</a>
-                        <div class="click {% if is_favorite_product %}active active2 active3{% endif %}" onclick="" data-product="{{  data.slug }}">
+                    <div class="buttons" style="display: flex; align-items: center; justify-content: left;">
+                        <a class="button" style="margin-right: 5px;" href="basket.html">Buy now</a>
+                        <a class="button" style="margin-right: 12px;" href="basket.html">Add to bag</a>
+                        <div class="click {% if is_favorite_product %}active active2 active3{% endif %}" onclick="" data-product="{{  data.slug }}" style="top: -12px;">
                           <span class="fa {% if is_favorite_product %}fa-star{% else %}fa-star-o{% endif %}"></span>
                           <div class="ring"></div>
                           <div class="ring2"></div>

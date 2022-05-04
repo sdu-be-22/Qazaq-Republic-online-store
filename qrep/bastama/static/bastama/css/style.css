@@ -105,6 +105,35 @@ header{
   visibility: visible;
 }
 
+.dropdown-toggle {
+  display: flex!important;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown-toggle::after {
+  display: none!important;
+}
+
+.dropdown-links {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+}
+
+.text-uppercase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-down {
+  top: -10px!important;
+  left: 0!important;
+  color: #fcfaf8;
+}
+
 .header-btns>li {
   display: inline-block;
   vertical-align: top;
@@ -373,8 +402,8 @@ header{
 }
 .fa {
   position: relative;
-  top: -19px;
-  left: -19px;
+  top: -10px;
+  left: -15px;
   padding: 20px;
   font-size: 30px;
   width: 50px;
