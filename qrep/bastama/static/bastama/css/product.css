@@ -8,7 +8,7 @@ main{
     flex-direction: row;
 }
 .kenjeide{
-	padding: 40px 0 0 30%;
+  margin: 120px auto;
     display: flex;
     flex-direction: row;
 }

@@ -110,7 +110,12 @@ function click_like_to_product(action, product_slug) {
     },
     body: JSON.stringify({'action': action, 'product_slug': product_slug})
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.status === 401) {
+        window.location.href = '/account/login'
+      }
+      return res.json()
+    })
     .then(data => {
       console.log(data)
     })

@@ -68,10 +68,15 @@ def product_detail(request, slug):
         if context.get('data').productattribute_set.all()[0].size:
             context['sizes'] = Size.objects.all()
 
-    customer, _ = Customer.objects.get_or_create(user=request.user)
-    _, is_fav = is_favorite_of_customer(customer, context['data'])
-    context['is_favorite_product'] = is_fav
-    print(context.get('is_favorite_product'), 'from product detail fav')
+    if request.user.is_authenticated:
+        customer, _ = Customer.objects.get_or_create(user=request.user)
+        _, is_fav = is_favorite_of_customer(customer, context['data'])
+        context['is_favorite_product'] = is_fav
+        context['user'] = customer
+        print(context.get('is_favorite_product'), 'from product detail fav')
+    else:
+        context['is_favorite_product'] = False
+        context['user'] = None
 
     return render(request, 'bastama/views/product.html', context)
 
@@ -123,6 +128,10 @@ def lookbook(request):
 
 
 def clicked_favorite_button(request):
+
+    if not request.user.is_authenticated:
+        return JsonResponse({'status': 'false', 'message': 'You are not authenticated'}, status=401)
+
     data = json.loads(request.body)
     customer = Customer.objects.get(user=request.user)
     product = Product.objects.get(slug=data['product_slug'])

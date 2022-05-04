@@ -846,6 +846,9 @@ header{
   padding: 10px;
 }
 
+.default-content {
+  padding: 120px 20px 20px 20px;
+}
 
 /*.cardblock{*/
 /*    text-align: center;*/
