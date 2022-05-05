@@ -928,7 +928,11 @@ header{
 }
 
 .default-content {
-  padding: 120px 20px 20px 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  padding: 120px 20px 40px 20px;
 }
 
 /*.cardblock{*/

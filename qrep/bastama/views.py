@@ -42,8 +42,6 @@ def index(request):
         return render(request, 'bastama/index.html', {'title': 'Qazaq Republic'})
 
 
-
-
 def category_products(request, cat_name):
     context = dict()
     context['title'] = cat_name.capitalize()
@@ -64,9 +62,8 @@ def product_detail(request, slug):
     context['data'] = Product.objects.get(slug=slug)
     context['title'] = context.get('data').name
 
-    if context.get('data').productattribute_set.all():
-        if context.get('data').productattribute_set.all()[0].size:
-            context['sizes'] = Size.objects.all()
+    if context.get('data').size:
+        context['sizes'] = Size.objects.all()
 
     if request.user.is_authenticated:
         customer, _ = Customer.objects.get_or_create(user=request.user)
@@ -113,20 +110,6 @@ def lookbook(request):
     return render(request, 'bastama/lookbook.html')
 
 
-# def click_like(request, slug):
-#     customer, _ = Customer.objects.get_or_create(user=request.user)
-#     favorite_product = Product.objects.get(slug=slug)
-#
-#     favorite, is_fav = is_favorite_of_customer(customer, favorite_product)
-#
-#     if is_fav:
-#         favorite.delete()
-#     else:
-#         Favors.objects.create(customer=customer, product=favorite_product)
-#
-#     return JsonResponse({'til': 'i collapse'})
-
-
 def clicked_favorite_button(request):
 
     if not request.user.is_authenticated:
@@ -146,8 +129,23 @@ def clicked_favorite_button(request):
     return JsonResponse('Error occur', safe=False)
 
 
-def test(request):
-    context = {'title': 'test'}
+def add_product_to_basket(request):
+    data = json.loads(request.body)
+    customer, _ = Customer.objects.get_or_create(user=request.user)
+    product_attr, _ = ProductAttribute.objects.get_or_create(product__slug=data.get('product'),
+                                                             color__name=data.get('color'))
 
-    set_product_to_basket(request, context['form'])
-    return render(request, 'bastama/components/test.html', context)
+    if data.get('size'):
+        size = Size.objects.get(size_code=data.get('size'))
+
+    order, _ = Order.objects.get_or_create(customer=customer, complete=False)
+    print(order)
+
+    order_item = OrderItem.objects.create(order=order, product_attr=product_attr)
+    order_item.size = size
+    order_item.quantity = data.get('quantity', 1)
+    order_item.save()
+
+    return JsonResponse('Successfully added', safe=False)
+
+

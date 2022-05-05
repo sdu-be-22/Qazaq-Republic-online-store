@@ -19,13 +19,28 @@
                 <div class="texth">
                     <h1>{{ data.name }}</h1>
                 </div>
+
                 <div class="coast">{{ data.price|floatformat }} KZT</div>
+
+                {% if data.description %}
+                    <div class="aboutcomposition" style="margin-bottom: 15px">
+                        <div class="comp">COMPOSITION:</div>
+                        <div>{{ data.description }}</div>
+                    </div>
+                {% else %}
+                    <h1>Doesn't have description</h1>
+                {% endif %}
+
                 {% if data.productattribute_set.all %}
                 <div class="colours">
                     <div class="textcolour">Colour select:</div>
                     <div class="buttoncolour">
-                        {% for color in data.productattribute_set.all %}
-                        <button id="first" onclick="changec(this)" class="butselectcolf" style="background-color:{{ color.color.color_code }}"></button>
+                        {% for attr in data.productattribute_set.all %}
+                            {% if forloop.counter == 1 %}
+                                <button class="butselectcolf active-color" onclick="active_color(this)" value="{{ attr.color }}" style="background-color:{{ attr.color.color_code }}"></button>
+                            {% else %}
+                                <button class="butselectcolf" onclick="active_color(this)" value="{{ attr.color }}" style="background-color:{{ attr.color.color_code }}"></button>
+                            {% endif %}
                         {% endfor%}
                     </div>
                 </div>
@@ -34,34 +49,45 @@
                 {% if sizes %}
                 <div class="aboutsize" style="margin-bottom: 15px;">
                     <div>SIZE:</div>
-                    <div class="buttonsizes">
+                    <div class="selector">
                         {% for size in sizes %}
-                        <button class="butselectss">{{ size }}</button>
+                        <div class="selecotr-item">
+                            {% if forloop.counter == 1 %}
+                                <input type="radio" id="radio{{ forloop.counter }}" name="selector" class="selector-item_radio" value="{{ size }}" checked>
+                                <label for="radio{{ forloop.counter }}" class="selector-item_label">{{ size }}</label>
+                            {% else %}
+                                <input type="radio" id="radio{{ forloop.counter }}" name="selector" class="selector-item_radio" value="{{ size }}">
+                                <label for="radio{{ forloop.counter }}" class="selector-item_label">{{ size }}</label>
+                            {% endif %}
+                        </div>
                         {% endfor %}
                     </div>
+
                 </div>
                 {% endif %}
 
-                {% if data.description %}
-                    <div class="aboutcomposition" style="margin-bottom: 15px">
-                        <div class="comp">COMPOSITION:</div>
-                        <div>{{ data.description }}</div>
-                    </div>
+                <div class="counter">
+                  <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                  <input type="text" name="quantity" value="1">
+                  <span class="up" onClick='increaseCount(event, this)'>+</span>
+                </div>
+
 
                     <div class="buttons" style="display: flex; align-items: center; justify-content: left;">
-                        <a class="button" style="margin-right: 5px;" href="basket.html">Buy now</a>
-                        <a class="button" style="margin-right: 12px;" href="basket.html">Add to bag</a>
+                        <button class="button" style="margin-right: 5px;" href="basket.html">Buy now</button>
+                        <button class="button" style="margin-right: 12px;" href="" onclick="add_product_to_basket('{{ data.slug }}')">Add to bag</button>
                         <div class="click {% if is_favorite_product %}active active2 active3{% endif %}" onclick="" data-product="{{  data.slug }}" style="top: -12px;">
                           <span class="fa {% if is_favorite_product %}fa-star{% else %}fa-star-o{% endif %}"></span>
                           <div class="ring"></div>
                           <div class="ring2"></div>
                         </div>
                     </div>
-                    </div>
-                {% else %}
-                <h1>Doesn't have description</h1>
-                {% endif %}
+                </div>
             </div>
         </div>
     </main>
 {% endblock %}
+
+{% block js %}
+    <script src="{% static 'bastama/js/basket.js' %}"></script>
+{% endblock js %}
