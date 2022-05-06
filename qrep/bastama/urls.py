@@ -10,10 +10,14 @@ urlpatterns = [
     path('search/', search, name='search'),
     path('favorite/', favorite_products, name='favorite'),
     path('basket/', basket, name='basket'),
-
-    path('lookbook/', lookbook, name='lookbook'),
-    path('test/', test, name='test'),
-
     path('update_like/', clicked_favorite_button, name='click_like'),
+
+    path('lookbook/<int:pk>/', lookbook, name='lookbook'),
+
+    path('checkout/', checkout_order, name='checkout'),
+    path('basket_add/', add_product_to_basket, name='basket_add'),
+    path('update_item/', update_item_quantity, name='update_item'),
+
     # path('update_favs/<slug:slug>/', click_like, name='click_like'),
+    # path('test/', test, name='test'),
 ]

@@ -8,6 +8,8 @@
 
 {# Block of Content starting right here #}
 {% block content %}
+    {% include 'bastama/components/default_sidebar.html' %}
+
     <div class="content">
         <form method="post">
             {% csrf_token %}
@@ -15,7 +17,7 @@
             <label id="bt" type="submit">Go</label>
         </form>
 
-        <div class="content_blocks" style="margin-top: 20px">
+        <div class="content_blocks" style="margin-top: 20px; height: 70%;">
         {% if products %}
             {% for prod in products %}
             <div class="cardblock">

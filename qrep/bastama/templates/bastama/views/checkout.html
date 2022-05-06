@@ -1,0 +1,61 @@
+{% extends 'bastama/components/base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'bastama/css/basket.css' %}">
+{% endblock style %}
+
+{% block content %}
+    <div class="content">
+        <div class="con">
+            <div style="padding: 120px"  class="row">
+
+                <div  style="margin-left: -60px" class="col-lg-6">
+                    <div class="box-element" id="form-wrapper">
+                        <form  id="form">
+
+                            <div style="margin-top: 20px" id="shipping-info">
+                                <h3 style="margin-left: 10px">Shipping Information:</h3>
+                                <hr>
+                                <div class="form-field">
+                                    <input class="form-control" type="text" name="address" placeholder="Address..">
+                                </div>
+                                <div class="form-field">
+                                    <input class="form-control" type="text" name="city" placeholder="City..">
+                                </div>
+                                <div class="form-field">
+                                    <input class="form-control" type="text" name="state" placeholder="State..">
+                                </div>
+                                <div class="form-field">
+                                    <input class="form-control" type="text" name="country" placeholder="Zip code..">
+                                </div>
+                            </div>
+
+                            <hr>
+                            <input  style="margin-left: 100px; width:50%;" class="button" type="submit" value="Continue">
+                        </form>
+                    </div>
+
+                </div>
+
+                <div style="margin-left:60px    " class="col-lg-6">
+                    <div class="box-element">
+                        <div style="margin-top:10px;padding: 10px">
+                            <a class="button" href="{% url 'bastama:basket' %}">&#x2190; Back to Cart</a>
+                        </div>
+                        <h3 style="margin: 15px">Order Summary</h3>
+                        <hr>
+                        <div class="cart-row">
+                            <div style="flex:2"><img class="row-image" src="{% static 'images/placeholder.png' %}"></div>
+                            <div style="flex:2"><p>Product 1</p></div>
+                            <div style="flex:1"><p>$20.00</p></div>
+                            <div style="flex:1"><p>x2</p></div>
+                        </div>
+                        <h5>Items:   2</h5>
+                        <h5>Total:   $4</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

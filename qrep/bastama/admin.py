@@ -7,6 +7,8 @@ admin.site.register(Customer)
 admin.site.register(ShippingAddress)
 admin.site.register(Color)
 admin.site.register(Size)
+admin.site.register(LookBook)
+admin.site.register(LookWithProduct)
 
 
 @admin.register(Category)
@@ -18,8 +20,8 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'category', 'price',
-                    'available', 'created', 'updated']
-    list_editable = ['price', 'available']
+                    'available', 'created', 'updated', 'size']
+    list_editable = ['price', 'available', 'size']
     prepopulated_fields = {'slug': ('name', 'category')}
 
 

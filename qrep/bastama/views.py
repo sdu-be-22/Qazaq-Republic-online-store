@@ -3,7 +3,7 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.core.mail import send_mail
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from .models import *
@@ -14,6 +14,10 @@ app_name = 'bastama'
 
 
 def index(request):
+    context = dict()
+    context['title'] = 'Qazaq Republic'
+    context['lookbooks'] = LookBook.objects.order_by('updated')[:3]
+
     if request.method == "POST":
         if 'message-ems' in request.POST:
             message_email = request.POST['message-ems']
@@ -39,9 +43,7 @@ def index(request):
             return redirect("bastama:home")
 
     else:
-        return render(request, 'bastama/index.html', {'title': 'Qazaq Republic'})
-
-
+        return render(request, 'bastama/index.html', context)
 
 
 def category_products(request, cat_name):
@@ -64,9 +66,8 @@ def product_detail(request, slug):
     context['data'] = Product.objects.get(slug=slug)
     context['title'] = context.get('data').name
 
-    if context.get('data').productattribute_set.all():
-        if context.get('data').productattribute_set.all()[0].size:
-            context['sizes'] = Size.objects.all()
+    if context.get('data').size:
+        context['sizes'] = Size.objects.all()
 
     if request.user.is_authenticated:
         customer, _ = Customer.objects.get_or_create(user=request.user)
@@ -82,9 +83,16 @@ def product_detail(request, slug):
 
 
 def basket(request):
-    basket_data = get_basket_data(request)  # Getting all products from basket
-    print(basket_data)
-    return render(request, 'bastama/basket.html')
+    # basket_data = get_basket_data(request)  # Getting all products from basket
+    context = dict()
+    context['title'] = 'Basket'
+
+    customer, _ = Customer.objects.get_or_create(user=request.user)
+    order, _ = Order.objects.get_or_create(customer=customer, complete=False)
+    context['order_items'] = OrderItem.objects.filter(order=order)
+    context['order'] = order
+
+    return render(request, 'bastama/basket.html', context)
 
 
 @login_required(login_url='/accounts/login/')
@@ -109,22 +117,21 @@ def search(request):
     return render(request, 'bastama/search.html', context)
 
 
-def lookbook(request):
-    return render(request, 'bastama/lookbook.html')
+def lookbook(request, pk):
+    context = dict()
+    print(pk)
+    lookbook = LookBook.objects.get(pk=pk)
+    context['lookbook'] = lookbook
+    context['title'] = lookbook.name
+    context['sizes'] = Size.objects.all()
+
+    return render(request, 'bastama/lookbook.html', context)
 
 
-# def click_like(request, slug):
-#     customer, _ = Customer.objects.get_or_create(user=request.user)
-#     favorite_product = Product.objects.get(slug=slug)
-#
-#     favorite, is_fav = is_favorite_of_customer(customer, favorite_product)
-#
-#     if is_fav:
-#         favorite.delete()
-#     else:
-#         Favors.objects.create(customer=customer, product=favorite_product)
-#
-#     return JsonResponse({'til': 'i collapse'})
+def checkout_order(request):
+    context = dict()
+    order = Order.objects.get_or_create()
+    return render(request, 'bastama/views/checkout.html')
 
 
 def clicked_favorite_button(request):
@@ -146,8 +153,62 @@ def clicked_favorite_button(request):
     return JsonResponse('Error occur', safe=False)
 
 
-def test(request):
-    context = {'title': 'test'}
+def add_product_to_basket(request):
+    data = json.loads(request.body)
+    customer, _ = Customer.objects.get_or_create(user=request.user)
 
-    set_product_to_basket(request, context['form'])
-    return render(request, 'bastama/components/test.html', context)
+    try:
+        product_attr = ProductAttribute.objects.get(product__slug=data.get('product'),
+                                                    color__name=data.get('color'))
+    except:
+        product = get_object_or_404(Product, slug=data.get('product'))
+        color = None
+
+        if data.get('color'):
+            color = get_object_or_404(Color, name=data.get('color'))
+
+        product_attr = ProductAttribute.objects.create(product=product, color=color)
+
+    size = None
+    if data.get('size'):
+        size = Size.objects.get(size_code=data.get('size'))
+
+    order, _ = Order.objects.get_or_create(customer=customer, complete=False)
+
+    order_item, created = OrderItem.objects.get_or_create(order=order, product_attr=product_attr, size=size)
+
+    if not created:
+        order_item.quantity += int(data.get('quantity', 1))
+    else:
+        order_item.quantity = int(data.get('quantity', 1))
+
+    order_item.save()
+
+    # order_item.quantity = data.get('quantity', 1)
+    # order_item.save()
+
+    return JsonResponse('Successfully added', safe=False)
+
+
+def update_item_quantity(request):
+    data = json.loads(request.body)
+    product_id = data['productId']
+    action = data['action']
+
+    order_item = OrderItem.objects.get(pk=product_id)
+
+    if action == 'add':
+        order_item.quantity = (order_item.quantity + 1)
+    elif action == 'remove':
+        order_item.quantity = (order_item.quantity - 1)
+    elif action == 'delete':
+        order_item.delete()
+        return JsonResponse('Item was deleted', safe=False)
+
+    order_item.save()
+
+    if order_item.quantity <= 0:
+        order_item.delete()
+
+    return JsonResponse('Item was added', safe=False)
+

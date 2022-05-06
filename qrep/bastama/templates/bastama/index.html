@@ -157,24 +157,26 @@
         <section class="looks">
             <div class="looks">
                 <div class="text_photo">
+                    {% for look in lookbooks %}
+{#                    <div class="text_photo_col">#}
+{#                        <a href="{% url 'bastama:lookbook' %}"><img src="{% static 'bastama/images/home/l1.jpg' %}" alt="" class="photo"></a>#}
+{#                        <div class="textt">#}
+{#                            <h4>Look 1</h4>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="text_photo_col">#}
+{#                        <a href="lookk.html"><img src="{% static 'bastama/images/home/l3.jpg' %}" alt="" class="photo"></a>#}
+{#                        <div class="text">#}
+{#                            <h4>Look 2</h4>#}
+{#                        </div>#}
+{#                    </div>#}
                     <div class="text_photo_col">
-                        <a href="lookbook.html"><img src="{% static 'bastama/images/home/l1.jpg' %}" alt="" class="photo"></a>
-                        <div class="textt">
-                            <h4>Look 1</h4>
-                        </div>
-                    </div>
-                    <div class="text_photo_col">
-                        <a href="lookk.html"><img src="{% static 'bastama/images/home/l3.jpg' %}" alt="" class="photo"></a>
+                        <a href="{% url 'bastama:lookbook' look.pk %}"><img src="{{ look.look_image.url }}" alt="" class="photo"></a>
                         <div class="text">
-                            <h4>Look 2</h4>
+                            <h4>{{ look.name }}</h4>
                         </div>
                     </div>
-                    <div class="text_photo_col">
-                        <a href="bookk.html"><img src="{% static 'bastama/images/home/l2.jpg' %}" alt="" class="photo"></a>
-                        <div class="text">
-                            <h4>Look 3</h4>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>

@@ -8,43 +8,77 @@
 
 {# Block of Content starting right here #}
 {% block content %}
-<div class="sidebar" id="sidebar">
-    <ul class="sidebar__menu">
-        <li class="menu__item">
-            <a href="lookbook.html" class="menu__link">Look 1</a>
-        </li>
+    {% include 'bastama/components/default_sidebar.html' %}
 
-        <li class="menu__item">
-            <a href="lookk.html" class="menu__link">Look 2</a>
-        </li>
-
-        <li class="menu__item">
-            <a href="bookk.html" class="menu__link">Look 3</a>
-        </li>
-    </ul>
-</div>
 <!-- --------------------------------------------------------------------------------------- -->
 
 <div class="rowblock">
     <div class="cardblock">
-        <div class="imageblock1" ></div>
-        <div class="nameelement">Look 1</div>
+        <div class="imageblock1" style="background: url({{ lookbook.look_image.url }}) "></div>
+        <div class="nameelement">{{ lookbook.name }}</div>
         <div class="coastel"></div>
-        <a class="button" href="basket.html">Shop Now</a>
+        <a class="button" onclick="add_to_basket()">Add to Bag</a>
     </div>
+    <div class="cardblock" style="display: flex; align-items: center; justify-content: center; flex-direction: column">
+       <div>SIZE:</div>
+        <div class="selector">
+            {% for size in sizes %}
+            <div class="selecotr-item">
+                {% if forloop.counter == 1 %}
+                    <input type="radio" id="radio{{ forloop.counter }}" name="selector" class="selector-item_radio" value="{{ size }}" checked>
+                    <label for="radio{{ forloop.counter }}" class="selector-item_label">{{ size }}</label>
+                {% else %}
+                    <input type="radio" id="radio{{ forloop.counter }}" name="selector" class="selector-item_radio" value="{{ size }}">
+                    <label for="radio{{ forloop.counter }}" class="selector-item_label">{{ size }}</label>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% for lookitem in lookbook.lookwithproduct_set.all %}
     <div class="cardblock">
-        <div class="imageblock2"></div>
-        <div class="nameelement">BQ burjeide</div>
-        <div class="coastel">18000KZT</div>
-        <a class="button" href="basket.html">Shop Now</a>
+        <div class="imageblock15" style="background: url({{ lookitem.product_attr.product.first_photo.url }})"></div>
+        <div class="nameelement">{{ lookitem.product_attr.product.name }}</div>
+        <div class="coastel">{{ lookitem.product_attr.product.price|floatformat }}KZT</div>
+        <a class="button" href="{% url 'bastama:product_detail' lookitem.product_attr.product.slug %}">Shop Now</a>
     </div>
-    <div class="cardblock">
-        <div class="imageblock3"></div>
-        <div class="nameelement">Jogger</div>
-        <div class="coastel">18000KZT</div>
-        <a class="button" href="basket.html">Shop Now</a>
-    </div>
+
+    {% endfor %}
+{#<button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button>#}
+
+{#<div id="id01" class="w3-modal">#}
+{#    <div class="w3-modal-content w3-card-4">#}
+{#      <header class="w3-container w3-teal">#}
+{#        <span onclick="document.getElementById('id01').style.display='none'"#}
+{#        class="w3-button w3-display-topright">&times;</span>#}
+{#        <h2>Modal Header</h2>#}
+{#      </header>#}
+{#      <div class="w3-container">#}
+{#        <p>Some text..</p>#}
+{#        <p>Some text..</p>#}
+{#      </div>#}
+{#      <footer class="w3-container w3-teal">#}
+{#        <p>Modal Footer</p>#}
+{#      </footer>#}
+{#    </div>#}
+{#  </div>#}
+{#    <div class="cardblock">#}
+{#        <div class="imageblock3"></div>#}
+{#        <div class="nameelement">Jogger</div>#}
+{#        <div class="coastel">18000KZT</div>#}
+{#        <a class="button" href="basket.html">Shop Now</a>#}
+{#    </div>#}
 </div>
 
     <!-- ------------------------------------------------------------------------------------ -->
 {% endblock content %}
+
+{% block js %}
+    <script type="text/javascript">
+        function add_to_basket() {
+          let selected_size = document.querySelector('.selector-item_radio:checked')
+
+        }
+    </script>
+{% endblock js %}

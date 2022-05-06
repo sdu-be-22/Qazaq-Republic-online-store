@@ -40,14 +40,6 @@ function change(element){
     }
 
 }
-function ch(element){
-    var b=element.innerHTML;
-    switch(b){
-        case "Go":
-            document.getElementById("h1").innerHTML="No such result found";
-            break;
-    }
-}
 
 let sidebar = document.querySelector('#sidebar');
 let hamburger = document.querySelector('.hamburger')
@@ -62,6 +54,8 @@ function openSide () {
     }
 }
 
+
+// Clicking Favorite button logic
 
 $('.click').click(function() {
   if ($('span').hasClass("fa-star")) {
@@ -96,6 +90,8 @@ $('.click').click(function() {
   }
 })
 
+
+// Fetch request to the server after clicking like
 function click_like_to_product(action, product_slug) {
   const url = '/update_like/'
   const csrf_token = get_cookie('csrftoken')
@@ -120,6 +116,39 @@ function click_like_to_product(action, product_slug) {
     .catch(err => {
       console.error(err)
     })
+}
+
+
+// Adding active-color to tag
+function active_color(element) {
+  let color_buttons = $('.butselectcolf')
+
+  for (let color of color_buttons) {
+    color.classList.remove('active-color')
+  }
+
+  element.classList.add('active-color')
+}
+
+// Counter quantity increase or decrease
+function increaseCount(a, b) {
+  var input = b.previousElementSibling;
+  var value = parseInt(input.value, 10);
+  value = isNaN(value) ? 0 : value;
+  value++;
+  input.value = value;
+}
+
+
+
+function decreaseCount(a, b) {
+  var input = b.nextElementSibling;
+  var value = parseInt(input.value, 10);
+  if (value > 1) {
+    value = isNaN(value) ? 0 : value;
+    value--;
+    input.value = value;
+  }
 }
 
 Vue.use(VueMaterial.default)

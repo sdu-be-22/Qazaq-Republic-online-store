@@ -33,19 +33,38 @@
 
 <script type="text/javascript" src="{% static 'bastama/js/script.js' %}"></script>
 <script type="text/javascript">
+    let user = '{{ request.user }}';
+    console.log(user);
 
     function get_cookie(name) {
         let cookieArr = document.cookie.split(';')
+        console.log(cookieArr, 'cookiearr')
 
         for (let i = 0; i < cookieArr.length; i++) {
             let cookiePair = cookieArr[i].split('=')
+            console.log(cookiePair[0])
 
-            if (cookiePair[0] === name) {
+            if (cookiePair[0].trim() === name) {
                 return decodeURIComponent(cookiePair[1])
             }
         }
         return null
     }
+
+    let cart = JSON.parse(get_cookie('cart'))
+
+    if (cart == undefined) {
+        console.log('are you here')
+        cart = {}
+        console.log('cart was created')
+        document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
+    }
+    console.log(cart)
+
 </script>
+
+{% block js %}
+{% endblock js %}
+
 </body>
 </html>

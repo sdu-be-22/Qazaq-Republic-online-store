@@ -1,18 +1,94 @@
-{% extends 'bastama/components/base.html' %}
+{% extends './components/base.html' %}
 {% load static %}
 
 {# Configuring the style path #}
 {% block style %}
     <link rel="stylesheet" href="{% static 'bastama/css/basket.css' %}">
+
 {% endblock style %}
 
-{# Block of Content starting right here #}
+
 {% block content %}
     {% include 'bastama/components/default_sidebar.html' %}
 
     <div class="content">
         <div class="con">
-            <h1 id="h1">Your basket is empty</h1>
+
+            <div class="row">
+                <div class="col-lg-12" style="padding: 20px;">
+                    <div class="box-element">
+
+                        <a  class="button" href="{% url 'bastama:home' %}">&#x2190; Continue Shopping</a>
+
+                        <br>
+                        <br>
+                        <table class="table">
+                            <tr>
+                                <th><h5>Items: <strong>{{ order.get_basket_total }}</strong></h5></th>
+                                <th><h5>Total:<strong>{{ order.get_basket_amount|floatformat }}KZT</strong></h5></th>
+                                <th>
+                                    <a  style="float:right; margin:5px;" class="button" href="{% url 'bastama:checkout' %}">Checkout</a>
+                                </th>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                    <br>
+                    <div class="box-element">
+                        <div class="cart-row">
+                            <div style="flex:2"></div>
+                            <div style="flex:2"><strong>Item</strong></div>
+                            <div style="flex:1"><strong>Price</strong></div>
+                            <div style="flex:1"><strong>Quantity</strong></div>
+                            <div style="flex:1"><strong>Total</strong></div>
+                            <div style="flex:1"><strong>Total</strong></div>
+
+                        </div>
+
+                        {% for item in order_items %}
+                        <div class="cart-row">
+                            <div class="center-flex" style="flex:2"><img class="row-image" src="{{ item.product_attr.product.first_photo.url }}"></div>
+                            <div class="center-flex" style="flex:2"><p>{{ item.product_attr.product }}</p></div>
+                            <div class="center-flex" style="flex:1"><p>{{ item.product_attr.product.price|floatformat }} KZT</p></div>
+                            <div class="center-flex" style="flex:1">
+                                <p class="quantity">{{ item.quantity }}</p>
+                                <div class="quantity" style="margin-top: -18px;">
+                                    <img class="chg-quantity"
+                                         src="{% static  'bastama/images/order/arrow-up.png' %}"
+                                         alt="arrow-up"
+                                         data-action="add"
+                                         data-product="{{ item.pk }}"
+                                    >
+                                    <img class="chg-quantity"
+                                         src="{% static  'bastama/images/order/arrow-down.png' %}"
+                                         alt="arrow-down"
+                                         data-action="remove"
+                                         data-product="{{ item.pk }}"
+                                    >
+                                </div>
+                            </div>
+                            <div class="center-flex" style="flex:1"><p>{% widthratio item.quantity 1 item.product_attr.product.price %} KZT</p></div>
+                            <div class="center-flex" style="flex:1">
+                                <i class="fa fa-remove chg-quantity"
+                                   style="font-size:24px; padding-top: 13px; cursor: pointer;"
+                                   data-action="delete"
+                                   data-product="{{ item.pk }}"
+                                >
+                                </i>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 {% endblock content %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'bastama/js/basket.js' %}"></script>
+{% endblock js %}
