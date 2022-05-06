@@ -8,13 +8,8 @@
 {#{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}#}
 
 {% block content %}
-<h1>fgvhbjnkm
-
-
-
-</h1>
     <!-- BREADCRUMB -->
-    <div id="breadcrumb">
+    <div id="breadcrumb" style="padding-top: 100px">
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="/">Home</a></li>
@@ -44,14 +39,18 @@
                      <table class="shopping-cart-table table">
                         <tr>
                             <th class="text-left">
-                                <a href="/user/update" class="primary-btn">Update Profile</a>
+                                <a href="./update" class="primary-btn">Update Profile</a>
                                 <a href="/user/password" class="primary-btn">Change Password</a>
                             </th>
-                            <td><img src="{{ profile.image.url }}" style="border-radius: 45px; height: 200px "></td>
+                            <td>
+                                {% if profile.image %}
+                                <img src="{{ profile.image.url }}" style="border-radius: 45px; height: 200px ">
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th class="text-left">Name Surname</th>
-                            <td class="text-left">{{ user.first_name}} {{ user.last_name}} </td>
+                            <td class="text-left">{{ profile.user.first_name}} {{ user.last_name}} </td>
                         </tr>
                         <tr>
                             <th class="text-left">Email</th>
