@@ -1,11 +1,10 @@
 {% load static %}
 {% load i18n %}
 <style>
-    strong {
+    .logo-name {
         font-size: 18px;
         color: #fcfaf8;
         text-align: center;
-
     }
     .hello-log{
         color: white;
@@ -32,12 +31,10 @@
                                 <div class="header-btns-icon">
                                     <img src="https://www.chogiwa.com/wp-content/uploads/2020/10/IMG_20201017_083133_814.jpg" style="height: 40px; border-radius: 50%; width: 40px">
                                 </div>
-{#                                <div class="text-uppercase">#}
-{#                                    <strong style="font-size: 18px ">{{ request.user }} <i class="fa fa-caret-down"></i></strong>#}
-{#                                </div>#}
+
                                 <div class="text-uppercase">
                                     <span>
-                                        <strong>
+                                        <strong class="logo-name">
                                             {{ request.user }}
                                         </strong>
                                     </span>

@@ -7,6 +7,8 @@ admin.site.register(Customer)
 admin.site.register(ShippingAddress)
 admin.site.register(Color)
 admin.site.register(Size)
+admin.site.register(LookBook)
+admin.site.register(LookWithProduct)
 
 
 @admin.register(Category)

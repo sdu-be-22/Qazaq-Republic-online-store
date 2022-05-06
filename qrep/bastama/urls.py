@@ -12,9 +12,11 @@ urlpatterns = [
     path('basket/', basket, name='basket'),
     path('update_like/', clicked_favorite_button, name='click_like'),
 
-    path('lookbook/', lookbook, name='lookbook'),
+    path('lookbook/<int:pk>/', lookbook, name='lookbook'),
 
-    path('basket_add/', add_product_to_basket, name='add_to_basket'),
+    path('checkout/', checkout_order, name='checkout'),
+    path('basket_add/', add_product_to_basket, name='basket_add'),
+    path('update_item/', update_item_quantity, name='update_item'),
 
     # path('update_favs/<slug:slug>/', click_like, name='click_like'),
     # path('test/', test, name='test'),

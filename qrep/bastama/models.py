@@ -57,7 +57,7 @@ class Order(models.Model):
     @property
     def get_basket_amount(self):
         basket_order_items = self.orderitem_set.all()
-        return sum([item.quantity * item.product.price for item in basket_order_items])
+        return sum([item.quantity * item.product_attr.product.price for item in basket_order_items])
 
     @property
     def get_basket_total(self):
@@ -83,10 +83,21 @@ class Size(models.Model):
 
 class ProductAttribute(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True, blank=True)
+    color = models.ForeignKey(Color, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.product.name
+
+
+class LookBook(models.Model):
+    name = models.CharField(max_length=100)
+    look_image = models.ImageField(upload_to='lookbook/%Y/%m/%d', blank=True)
+    updated = models.DateTimeField(auto_now=True)
+
+
+class LookWithProduct(models.Model):
+    product_attr = models.ForeignKey(ProductAttribute, on_delete=models.CASCADE)
+    lookbook = models.ForeignKey(LookBook, on_delete=models.CASCADE)
 
 
 class OrderItem(models.Model):

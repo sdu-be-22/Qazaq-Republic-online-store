@@ -36,10 +36,12 @@
                     <div class="textcolour">Colour select:</div>
                     <div class="buttoncolour">
                         {% for attr in data.productattribute_set.all %}
-                            {% if forloop.counter == 1 %}
-                                <button class="butselectcolf active-color" onclick="active_color(this)" value="{{ attr.color }}" style="background-color:{{ attr.color.color_code }}"></button>
-                            {% else %}
-                                <button class="butselectcolf" onclick="active_color(this)" value="{{ attr.color }}" style="background-color:{{ attr.color.color_code }}"></button>
+                            {% if attr.color %}
+                                {% if forloop.counter == 1 %}
+                                    <button class="butselectcolf active-color" onclick="active_color(this)" value="{{ attr.color }}" style="background-color:{{ attr.color.color_code }}"></button>
+                                {% else %}
+                                    <button class="butselectcolf" onclick="active_color(this)" value="{{ attr.color }}" style="background-color:{{ attr.color.color_code }}"></button>
+                                {% endif %}
                             {% endif %}
                         {% endfor%}
                     </div>
@@ -74,7 +76,7 @@
 
 
                     <div class="buttons" style="display: flex; align-items: center; justify-content: left;">
-                        <button class="button" style="margin-right: 5px;" href="basket.html">Buy now</button>
+{#                        <button class="button" style="margin-right: 5px;" href="basket.html">Buy now</button>#}
                         <button class="button" style="margin-right: 12px;" href="" onclick="add_product_to_basket('{{ data.slug }}')">Add to bag</button>
                         <div class="click {% if is_favorite_product %}active active2 active3{% endif %}" onclick="" data-product="{{  data.slug }}" style="top: -12px;">
                           <span class="fa {% if is_favorite_product %}fa-star{% else %}fa-star-o{% endif %}"></span>

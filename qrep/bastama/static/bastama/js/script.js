@@ -139,6 +139,8 @@ function increaseCount(a, b) {
   input.value = value;
 }
 
+
+
 function decreaseCount(a, b) {
   var input = b.nextElementSibling;
   var value = parseInt(input.value, 10);
