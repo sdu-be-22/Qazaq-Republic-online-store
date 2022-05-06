@@ -16,7 +16,7 @@ class UserProfile(models.Model):
     # currency = models.ForeignKey(Currency, on_delete=models.CASCADE, null=True,blank=True)
 
     def __str__(self):
-        return self.user
+        return self.user.first_name
 
     def user_name(self):
         return self.user.first_name + ' ' + self.user.last_name + ' [' + self.user.username + '] '

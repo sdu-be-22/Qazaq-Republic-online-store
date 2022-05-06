@@ -1,52 +1,57 @@
 from pyexpat.errors import messages
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-
-from .forms import CreateUserForm
+from . import forms
+from .forms import CreateUserForm, UserUpdateForm, ProfileUpdateForm
 from .models import *
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import UserProfile
+
 
 def index(request):
-    context = {}
-    return render(request,'user/user_profile.html',context)
+    current_user = request.user
+    profile, _ = UserProfile.objects.get_or_create(user=current_user)
+    context = dict()
+    context['profile'] = profile
+    print(current_user)
+    print(profile.address, 'address jok')
+    return render(request, 'user/user_profile.html', context)
 
 
-# def registerPage(request):
-#     if request.user.is_authenticated:
-#         return redirect('bastama:home')
-#     else:
-#         form = CreateUserForm()
-#         if request.method == 'POST':
-#             form = CreateUserForm(request.POST)
-#             if form.is_valid():
-#                 form.save()
-#                 user = form.cleaned_data.get('username')
-#                 messages.success(request, 'Accounts was created for ' + user)
-#                 return redirect('/accounts/login')
-#         # context = {'form':form}
-#         return render(request, 'accounts/register.html', {'form': form})
-#
-#
-# def loginPage(request):
-#     if request.user.is_authenticated:
-#         return redirect('bastama:home')
-#     else:
-#         if request.method == 'POST':
-#             username = request.POST.get('username').strip()
-#             password = request.POST.get('password').strip()
-#
-#             user = authenticate(request, username=username, password=password)
-#             print(user)
-#             if user is not None:
-#                 login(request, user)
-#                 return redirect('bastama:home')
-#             else:
-#                 messages.info(request, 'Username OR password is incorrect')
-#         context = {}
-#         return render(request, 'accounts/login.html', context)
-#
-#
-# def logoutUser(request):
-#     logout(request)
-#     return redirect('bastama:home')
+def user_update(request):
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)  # request.user is user  data
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = request.user
+            user_profile, _ = UserProfile.objects.get_or_create(user=user)
+
+            if profile_form.cleaned_data.get('phone'):
+                user_profile.phone = profile_form.cleaned_data.get('phone')
+            if profile_form.cleaned_data.get('country'):
+                user_profile.country = profile_form.cleaned_data.get('country')
+            if profile_form.cleaned_data.get('image'):
+                user_profile.image = profile_form.cleaned_data.get('image')
+            if profile_form.cleaned_data.get('city'):
+                user_profile.city = profile_form.cleaned_data.get('city')
+            if profile_form.cleaned_data.get('address'):
+                user_profile.address = profile_form.cleaned_data.get('address')
+
+            user_profile.save()
+
+            user_form.save()
+            # profile_form.save()
+            messages.success(request, 'Your account has been updated!')
+            return HttpResponseRedirect('/profile')
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user)
+        #     instance=request.user.userprofile)  # "userprofile" model -> OneToOneField relatinon with user
+        context = {
+            'user_form': user_form,
+            'profile_form': profile_form
+        }
+        form = forms.ProfileForm(instance=request.user)
+    return render(request, 'user/user_update.html', context)
