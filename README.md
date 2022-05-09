@@ -9,7 +9,7 @@ QR store on [Instagram](https://instagram.com/qazaq.republic?igshid=YmMyMTA2M2Y=
 - Bissenbay Dauletbayev - b.dauletbayev@sdu.edu.kz
 
 ## ALASH Team Members 
-- Gazimov Dias - 200103360@stu.sdu.edu.kz
+- Gazimov Dias - 200103360@stu.sdu.edu.kz Super
 - Satanova Magnoliya - 200103068@stu.sdu.edu.kz
 - Sarsenbayeva Alfiya - 200103223@stu.sdu.edu.kz
 - Assil Aktolkyn - 200103155@stu.sdu.edu.kz
