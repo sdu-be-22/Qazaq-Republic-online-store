@@ -28,7 +28,7 @@
                 {% endif %}
                 <div class="nameelement">{{ prod.name }}</div>
                 <div class="coastel">{{ prod.price | floatformat }} KZT</div>
-                <a class="button" href="basket.html">Shop Now</a>
+                <a class="button" href="{% url 'bastama:product_detail' prod.slug %}">Shop Now</a>
             </div>
             {% endfor %}
         {% else %}

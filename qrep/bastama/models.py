@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User  # Importing User model from auth app
+from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 
 
 class Customer(models.Model):
@@ -113,7 +114,16 @@ class ShippingAddress(models.Model):
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     address = models.CharField(max_length=255, null=True)
     city = models.CharField(max_length=255, null=True)
+    zipcode = models.CharField(max_length=255, null=False)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.address
+
+
+class Payment(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    cc_number = models.CharField(max_length=20, null=False, blank=False)
+    cc_expiry = models.CharField(max_length=5, null=False, blank=False)
+    cc_code = models.CharField(max_length=3, null=False, blank=False)
+

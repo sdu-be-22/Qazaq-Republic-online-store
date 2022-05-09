@@ -5,8 +5,8 @@
     <div class="aside">
     <ul class="list-links">
         <li><a href="/profile/">User Profile</a></li>
-        <li><a href="/user/orders">My Orders</a></li>
-        <li><a href="/user/favorits">My Favorits</a></li>
+        <li><a href="{% url 'bastama:my_orders' %}">My Orders</a></li>
+        <li><a href="{% url 'bastama:favorite' %}">My Favorites</a></li>
         <li><a href="/account/logout">Logout</a></li>
     </ul>
 </div>

@@ -1,5 +1,10 @@
 {% extends "bastama/components/base.html" %}
+{% load static %}
 {% load i18n %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'account/css/style.css' %}">
+{% endblock style %}
 
 {% block content %}
 {% if process == "connect" %}
@@ -18,4 +23,4 @@
   {% csrf_token %}
   <button type="submit">{% trans "Continue" %}</button>
 </form>
-{% endblock %}
+{% endblock content %}

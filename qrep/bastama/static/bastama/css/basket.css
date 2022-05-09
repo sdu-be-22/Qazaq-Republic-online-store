@@ -3,13 +3,13 @@
 	padding: 40px;
     background-image:url("../images/home/bs.png");
     background-size: 3%;
-    height: 780px;
+    min-height: 780px;
 
 }
 .con{
     margin: 60px 5%;
     background-color: rgb(255, 255, 255);
-    height: 720px;
+    min-height: 720px;
 }
 
 .box-element{

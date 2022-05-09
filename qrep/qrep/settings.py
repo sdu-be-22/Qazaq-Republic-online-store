@@ -148,7 +148,7 @@ USE_TZ = True
 
 
 LOGIN_REDIRECT_URL = '/'
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'   #couterpart to Django's LOGIN_REDIRECT_URL
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'   # couterpart to Django's LOGIN_REDIRECT_URL
 ACCOUNT_LOGOUT_REDIRECT = '/'
 
 # Static files (CSS, JavaScript, Images)
@@ -165,7 +165,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+# Email configuration
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = '200103223@stu.sdu.edu.kz'

@@ -17,7 +17,7 @@
         <div class="imageblock1" style="background: url({{ lookbook.look_image.url }}) "></div>
         <div class="nameelement">{{ lookbook.name }}</div>
         <div class="coastel"></div>
-        <a class="button" onclick="add_to_basket()">Add to Bag</a>
+        <a class="button bag" onclick="add_to_basket(this)" data-lookbook="{{ lookbook.pk }}">Add to Bag</a>
     </div>
     <div class="cardblock" style="display: flex; align-items: center; justify-content: center; flex-direction: column">
        <div>SIZE:</div>
@@ -76,9 +76,32 @@
 
 {% block js %}
     <script type="text/javascript">
-        function add_to_basket() {
+        function add_to_basket(elem) {
           let selected_size = document.querySelector('.selector-item_radio:checked')
 
+          console.log(elem.dataset.lookbook)
+          if (user != 'AnonymousUser') {
+            console.log('User is logged in, sending data')
+
+            const url = '/look_basket/'
+            const csrftoken = get_cookie('csrftoken')
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+                body: JSON.stringify({'size': selected_size.value, 'lookbook': elem.dataset.lookbook})
+            })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    console.log(data)
+                    location.reload()
+                })
+          }
         }
     </script>
 {% endblock js %}

@@ -29,7 +29,7 @@
                         {% if user.id is not None %}
                             <div style="list-style: none" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
                                 <div class="header-btns-icon">
-                                    <img src="https://www.chogiwa.com/wp-content/uploads/2020/10/IMG_20201017_083133_814.jpg" style="height: 40px; border-radius: 50%; width: 40px">
+                                    <img src="{% if profile.image.url %}{{ profile.image.url }}{% else %}{% static 'bastama/images/default/download.jpeg' %}{% endif %}" style="height: 40px; border-radius: 50%; width: 40px" alt="ava-image">
                                 </div>
 
                                 <div class="text-uppercase">
@@ -48,9 +48,8 @@
                         <ul class="custom-menu">
                             <li><a href="/profile/" class="dropdown-links"><i class="fa fa-user-o"></i> {% trans "My Account" %}</a></li>
                             <li><a href="{% url 'bastama:favorite' %}" class="dropdown-links"><i class="fa fa-heart-o"></i> {% trans "My Favorits" %}</a></li>
-                            <li><a href="" class="dropdown-links"><i class="fa fa-exchange"></i> {% trans "My Orders " %}</a></li>
+                            <li><a href="{% url 'bastama:my_orders' %}" class="dropdown-links"><i class="fa fa-exchange"></i> {% trans "My Orders " %}</a></li>
                             <li><a href="{% url 'account_logout' %}" class="dropdown-links"><i class="fa fa-unlock-alt"></i> {% trans "Logout" %}</a></li>
-
                         </ul>
                     </li>
             </ul>

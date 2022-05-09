@@ -9,6 +9,7 @@ admin.site.register(Color)
 admin.site.register(Size)
 admin.site.register(LookBook)
 admin.site.register(LookWithProduct)
+admin.site.register(Payment)
 
 
 @admin.register(Category)

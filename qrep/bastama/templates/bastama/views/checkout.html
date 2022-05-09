@@ -12,30 +12,42 @@
 
                 <div  style="margin-left: -60px" class="col-lg-6">
                     <div class="box-element" id="form-wrapper">
-                        <form  id="form">
-
+                        <form id="form" onsubmit="submitFormData(event)">
                             <div style="margin-top: 20px" id="shipping-info">
-                                <h3 style="margin-left: 10px">Shipping Information:</h3>
+                                <h3 style="margin-left: 10px">Shipping Detail:</h3>
                                 <hr>
                                 <div class="form-field">
                                     <input class="form-control" type="text" name="address" placeholder="Address..">
                                 </div>
                                 <div class="form-field">
-                                    <input class="form-control" type="text" name="city" placeholder="City..">
+                                    <input class="form-control" type="text" name="city" placeholder="City.." required>
+                                </div>
+{#                                <div class="form-field">#}
+{#                                    <input class="form-control" type="text" name="state" placeholder="State..">#}
+{#                                </div>#}
+                                <div class="form-field">
+                                    <input class="form-control" type="text" name="country" placeholder="Zip code.." required>
+                                </div>
+
+                                <hr>
+                                <h3 style="margin-left: 10px">Payment Information</h3>
+                                <hr>
+                                <div class="form-field">
+                                    <input class="form-control" type="text" name="card_num" placeholder="Credit Card No.." required>
                                 </div>
                                 <div class="form-field">
-                                    <input class="form-control" type="text" name="state" placeholder="State..">
+                                    <input class="form-control" type="text" name="expire" placeholder="Expire.." required>
                                 </div>
                                 <div class="form-field">
-                                    <input class="form-control" type="text" name="country" placeholder="Zip code..">
+                                    <input class="form-control" type="text" name="ccv" placeholder="CCV.." required>
                                 </div>
                             </div>
 
                             <hr>
-                            <input  style="margin-left: 100px; width:50%;" class="button" type="submit" value="Continue">
+
+                            <input class="button" type="submit" value="Submit">
                         </form>
                     </div>
-
                 </div>
 
                 <div style="margin-left:60px    " class="col-lg-6">
@@ -45,17 +57,73 @@
                         </div>
                         <h3 style="margin: 15px">Order Summary</h3>
                         <hr>
+
+                        {% for item in order_items %}
+                            <span>{{ item.product_attr }}</span>
                         <div class="cart-row">
-                            <div style="flex:2"><img class="row-image" src="{% static 'images/placeholder.png' %}"></div>
-                            <div style="flex:2"><p>Product 1</p></div>
-                            <div style="flex:1"><p>$20.00</p></div>
-                            <div style="flex:1"><p>x2</p></div>
+                            <div style="flex:2"><img class="row-image" src="{{ item.product_attr.product.first_photo.url }}"></div>
+                            <div style="flex:2"><p>{{ item.product_attr.product }}</p></div>
+                            <div style="flex:1"><p>{{ item.product_attr.product.price }} KZT</p></div>
+                            <div style="flex:1"><p>x{{ item.quantity }}</p></div>
                         </div>
-                        <h5>Items:   2</h5>
-                        <h5>Total:   $4</h5>
+                        {% endfor %}
+                        <h5>Items:   {{ order.get_basket_total }}</h5>
+                        <h5>Total:   {{ order.get_basket_amount|floatformat }} KZT</h5>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <style>
+
+    </style>
 {% endblock content %}
+
+{% block js %}
+    <script type="text/javascript">
+        let shipping = '{{ order.shipping }}'
+        let total = '{{ order.get_cart_total }}'
+
+        let form = document.getElementById('form')
+        csrftoken = get_cookie('csrftoken')
+
+        function submitFormData(event) {
+            event.preventDefault()
+            console.log('submitted data');
+            console.log(form.address.value)
+
+            let shippingInfo = {
+                'address': form.address.value,
+                'city': form.city.value,
+                'zipcode': form.country.value,
+            }
+
+            let paymentInfo = {
+                'credit_card': form.card_num.value,
+                'expire': form.expire.value,
+                'ccv': form.ccv.value,
+            }
+
+            let url = '/paypal/'
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+                body: JSON.stringify({'shipping': shippingInfo, 'payment': paymentInfo}),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log('Success', data)
+                    window.location.href = '{% url 'bastama:home' %}'
+                })
+                .catch(err => {
+                    alert('Transaction was failed')
+                })
+        }
+
+    </script>
+{% endblock js %}
