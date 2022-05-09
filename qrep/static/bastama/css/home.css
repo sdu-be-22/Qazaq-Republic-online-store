@@ -1,0 +1,241 @@
+ /* Aboutus styles */
+ #aboutus{
+     background-color: #0045c0;
+    margin-top: -8px;}
+.imgg{
+    margin-top: -35%;
+    box-shadow: 0px 0px 20px 0.5px rgb(0, 0, 0);
+    margin-left: 58%;
+    z-index: -1;
+    margin-bottom: 70px;}
+.text h1{
+    color: white;
+    font-family: 'Spartan', sans-serif;
+    font-size: 40px;
+    margin: 170px 0 0 100px;
+    z-index: 2;
+}
+.text p{
+    color: rgb(173, 191, 240);
+    font-family: 'Spartan', sans-serif;
+    margin: 20px 0 0 100px;
+    font-size: 20px;
+}
+.text pre{
+    color: rgb(50, 86, 185);
+    font-family: 'Spartan', sans-serif;
+    font-weight: bolder;
+    font-size:500%;
+    margin: 80px 0 -0.5% 100px;
+    z-index: 4;
+}
+#first{
+    color: white;
+    font-size: 90px;
+    margin-top: -5%;
+    z-index: 1;
+}
+.bastyq{
+    background-color: white;
+    position: relative;
+}
+.bastyq h1{
+    color: white;
+    font-family: 'Podkova',serif;
+    text-align: center;
+    padding: 50px;
+}
+
+/* END About */
+
+/* catalog styles */
+ #catalog {
+    padding: 5px;
+    max-width: 100%;
+  }
+  #cat{
+      width: 35%;
+      margin-top: 15px;
+      margin-left: 8%;
+  }
+
+
+
+/* Image zoom on hover + Overlay colour */
+  .parent{
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px;
+  }
+  .twos{
+      display: flex;
+  }
+  .pone{
+    width: 30%;
+    height: 550px;
+  }
+  .ptwo{
+    width: 70%;
+    height: 550px;
+  }
+  .child{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+  }
+  .child a{
+    font-family: 'Podkova',serif;
+  }
+  .bg-one{
+    background-image: url("../images/home/logo_jeans.jpg");
+    background-position: center;
+  }
+  .bg-two{
+    background-image: url("../images/home/jeide_logo2.jpg");
+    background-position: center;
+  }
+  .bg-three{
+    background-image: url("../images/home/usak_logo.jpg");
+    background-position: center;
+  }
+  .bg-four{
+    background-image: url("../images/home/gift_logo.jpg");
+    background-position: center;
+  }
+
+  .grads {
+    display: none;
+    font-size: 235%;
+    color: #ffffff ;
+    font-family: sans-serif;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 50px;
+    cursor: pointer;
+  }
+
+  .parent:hover .child, .parent:focus .child {
+    -ms-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  .parent:hover .child:before, .parent:focus .child:before {
+    display: block;
+  }
+
+  .parent:hover a, .parent:focus a {
+    display: block;
+  }
+
+  .child:before {
+    content: "";
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg, rgb(90, 92, 94) 0%, rgb(233, 241, 243) 100%);
+    opacity: 0.9;
+  }
+
+.looks h4 {
+    text-align: center;
+    padding: 20px;
+    font-size: 40px;
+    font-family: 'Podkova',serif;
+    color: crimson;
+}
+
+.text_photo {
+    display: flex;
+    justify-content: space-around;
+}
+#lookbook{
+    height: 800px;
+}
+
+.photo {
+    width: 400px;
+    height: 650px;
+    border-radius: 50px;
+    padding: 25px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 30px 15px;
+}
+
+.text_photo_col:hover {
+    transform: translateY(-10px);
+}
+
+.textt {
+    text-align: center;
+    margin-top: -25px;
+}
+
+.car{
+    max-width: 40%;
+    max-height: 30%;
+    margin-left: 3%;
+    margin-bottom: 5%;
+}
+.bastyq h1{
+font-size: 95px;
+-webkit-text-stroke: 3px #0045c0;
+}
+.custom-shape-divider-top-1639846922 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1639846922 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 44px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1639846922 .shape-fill {
+    fill: #0045C0;
+}
+
+.tes{
+    color: #0045C0;
+    font-size: 20px;
+    font-family: 'Spartan', sans-serif;
+    text-align: center;
+    -webkit-text-stroke: 0.5px black;
+}
+.tes span{
+    color: white;
+    -webkit-text-stroke: 1px #0045c0;
+    font-weight: bold;
+}
+.ske{
+    display:flex;
+    justify-content: space-around;
+}
+
+
+/* END Catalog */
+
