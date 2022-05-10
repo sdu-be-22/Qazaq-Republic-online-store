@@ -29,7 +29,7 @@
                         {% if user.id is not None %}
                             <div style="list-style: none" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
                                 <div class="header-btns-icon">
-                                    <img src="{% if profile.image.url %}{{ profile.image.url }}{% else %}{% static 'bastama/images/default/download.jpeg' %}{% endif %}" style="height: 40px; border-radius: 50%; width: 40px" alt="ava-image">
+                                    <img src="{% if profile.image %}{{ profile.image.url }}{% else %}{% static 'bastama/images/default/download.jpeg' %}{% endif %}" style="height: 40px; border-radius: 50%; width: 40px" alt="ava-image">
                                 </div>
 
                                 <div class="text-uppercase">
