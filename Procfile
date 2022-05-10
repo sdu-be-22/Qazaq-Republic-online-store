@@ -1,1 +1,1 @@
-web: gunicorn qrep.wsgi --log-file -
+web: gunicorn --pythonpath qrep qrep.wsgi --log-file -
