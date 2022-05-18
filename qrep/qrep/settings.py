@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bi50q6g1_t_+m5!=_**w3k3(h*gs&bov0csv2!oalg@qdq8jte'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['alash-republic.herokuapp.com', '127.0.0.1']
 
@@ -175,6 +175,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Email configuration
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = '200103223@stu.sdu.edu.kz'
-EMAIL_HOST_PASSWORD = 'alfiyas2002'
+# EMAIL_HOST_USER = '200103223@stu.sdu.edu.kz'
+# EMAIL_HOST_PASSWORD = 'alfiyas2002'
 EMAIL_USE_TLS = True
