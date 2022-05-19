@@ -15,6 +15,9 @@ QR store on [Instagram](https://instagram.com/qazaq.republic?igshid=YmMyMTA2M2Y=
 - Assil Aktolkyn - 200103155@stu.sdu.edu.kz
 - Sakhtashov Yerkhat - 200103307@stu.sdu.edu.kz
 
+## You can see our project [here](https://alash-republic.herokuapp.com/)
+## [Presentation](https://www.canva.com/design/DAFBAphwhdw/5KCAh9n7plU0jsx2dINldw/view?utm_content=DAFBAphwhdw&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
+
 
 # Running Project on different OS 
 
